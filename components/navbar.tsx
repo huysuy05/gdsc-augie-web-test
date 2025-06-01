@@ -6,6 +6,7 @@ import Image from "next/image"
 import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { ModeToggle } from "@/components/mode-toggle"
+import { UserAuthForm } from "@/components/auth/user-auth-form"
 import { cn } from "@/lib/utils"
 
 export function Navbar() {
@@ -59,7 +60,7 @@ export function Navbar() {
 
           <div className="flex items-center space-x-2">
             <ModeToggle />
-            <Button className="hidden md:flex">Join Us</Button>
+            <UserAuthForm />
             <Button variant="ghost" size="icon" className="md:hidden" onClick={() => setIsOpen(!isOpen)}>
               {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </Button>
@@ -86,9 +87,6 @@ export function Navbar() {
             <Link href="/contact" className="block py-2 text-base font-medium" onClick={() => setIsOpen(false)}>
               Contact
             </Link>
-            <div className="pt-2">
-              <Button className="w-full">Join Us</Button>
-            </div>
           </div>
         </div>
       )}
