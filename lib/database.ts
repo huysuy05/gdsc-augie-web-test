@@ -1,5 +1,5 @@
 import { supabase } from "./supabase"
-import type { Workshop, Event } from "./supabase"
+import type { Workshop, Event } from "./types"
 
 export async function getWorkshops(): Promise<Workshop[]> {
   const { data, error } = await supabase.from("workshops").select("*").order("date", { ascending: false })
