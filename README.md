@@ -1,4 +1,3 @@
-
 # GDSC Augie Web Project
 
 A modern web application built with Next.js, TypeScript, and Tailwind CSS, featuring a comprehensive UI component library powered by Radix UI.
@@ -17,7 +16,7 @@ A modern web application built with Next.js, TypeScript, and Tailwind CSS, featu
 ## 📦 Prerequisites
 
 - Node.js (Latest LTS version recommended)
-- pnpm (Package manager)
+- npm (Node Package Manager)
 
 ## 🛠️ Installation
 
@@ -29,7 +28,7 @@ cd gdsc-augie-web-test
 
 2. Install dependencies:
 ```bash
-pnpm install
+npm install
 ```
 
 3. Create a `.env.local` file in the root directory and add your environment variables:
@@ -42,17 +41,17 @@ pnpm install
 To start the development server:
 
 ```bash
-pnpm dev
+npm run dev
 ```
 
 The application will be available at `http://localhost:3000`
 
 ## 📝 Available Scripts
 
-- `pnpm dev` - Start development server
-- `pnpm build` - Build for production
-- `pnpm start` - Start production server
-- `pnpm lint` - Run ESLint
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run start` - Start production server
+- `npm run lint` - Run ESLint
 
 ## 🏗️ Project Structure
 
