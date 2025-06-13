@@ -82,8 +82,8 @@ export function HeroSection() {
           </div>
 
           <div className={`relative ${inView ? "animate-fade-in animate-delay-400" : "opacity-0"}`}>
-            <div className="relative h-[400px] md:h-[500px] w-full rounded-xl overflow-hidden shadow-2xl">
-              <Image src="/placeholder.svg?height=500&width=600" alt="GDG Augustana" fill className="object-cover" />
+            <div className="relative h-[300px] md:h-[400px] w-full rounded-xl overflow-hidden shadow-2xl">
+              <Image src="/gdg-logo.png" alt="GDG Augustana" fill className="object-cover" />
             </div>
 
             {/* Google-inspired colored shapes */}

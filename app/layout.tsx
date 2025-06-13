@@ -11,7 +11,7 @@ const inter = Inter({ subsets: ["latin"] })
 export const metadata: Metadata = {
   title: "Google Developer Group - Augustana College",
   description: "Official website of the Google Developer Group at Augustana College",
-    generator: 'v0.dev'
+    generator: 'GDG Team'
 }
 
 export default function RootLayout({

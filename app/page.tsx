@@ -7,10 +7,10 @@ import { HeroSection } from "@/components/hero-section"
 import { TeamSection } from "@/components/team-section"
 import { UpcomingEvents } from "@/components/upcoming-events"
 
-import { getWorkshops, getUpcomingEvents } from "@/lib/database"
+// import { getWorkshops, getUpcomingEvents } from "@/lib/database"
 
 export default async function Home() {
-  const [workshops, events] = await Promise.all([getWorkshops(), getUpcomingEvents()])
+  // const [workshops, events] = await Promise.all([getWorkshops(), getUpcomingEvents()])
   return (
     <div className="flex flex-col min-h-screen">
       <HeroSection />
@@ -49,7 +49,7 @@ export default async function Home() {
       </section>
 
       {/* Upcoming Events */}
-      <UpcomingEvents events={events} />
+      {/* <UpcomingEvents events={events} /> */}
 
       {/* Past Workshops Section */}
       <section className="py-16 px-4 md:px-6 lg:px-8 bg-gray-50">
@@ -62,7 +62,7 @@ export default async function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {workshops.slice(0, 3).map((workshop) => (
               <WorkshopCard
                 key={workshop.id}
@@ -79,7 +79,7 @@ export default async function Home() {
                 attendees={workshop.attendees_count}
               />
             ))}
-          </div>
+          </div> */}
 
           <div className="mt-10 text-center">
             <Button variant="outline" className="group">
