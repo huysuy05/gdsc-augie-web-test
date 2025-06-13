@@ -113,7 +113,8 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## 👥 Authors
 
-- Your Name - Initial work
+- Huy Nguyen - Initial work
+- Hieu Nguyen - Backend Development
 
 ## 🙏 Acknowledgments
 
