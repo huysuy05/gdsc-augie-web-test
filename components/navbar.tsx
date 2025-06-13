@@ -34,7 +34,7 @@ export function Navbar() {
           <div className="flex items-center">
             <Link href="/" className="flex items-center space-x-2">
               <div className="relative h-8 w-8">
-                <Image src="/placeholder.svg?height=32&width=32" alt="GDG Logo" fill className="object-contain" />
+                <Image src="https://images.seeklogo.com/logo-png/28/2/google-developers-logo-png_seeklogo-289108.png" alt="GDG Logo" fill className="object-contain" />
               </div>
               <span className="font-bold text-xl hidden md:inline-block">GDG Augustana</span>
             </Link>
