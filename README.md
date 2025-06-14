@@ -107,13 +107,10 @@ This project uses a comprehensive set of UI components from Radix UI, including:
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## 📄 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## 👥 Authors
 
-- Huy Nguyen - Initial work
+- Huy Nguyen - Frontend and Database Development
 - Hieu Nguyen - Backend Development
 
 ## 🙏 Acknowledgments
