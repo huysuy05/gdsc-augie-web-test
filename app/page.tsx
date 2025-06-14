@@ -42,7 +42,7 @@ export default async function Home() {
               </div>
             </div>
             <div className="relative h-[400px] rounded-xl overflow-hidden shadow-xl transition-transform hover:scale-[1.02] duration-300">
-              <Image src="/placeholder.svg?height=400&width=600" alt="GDG Community" fill className="object-cover" />
+              <Image src="/everyone.jpg" alt="GDG Community" fill className="object-cover" />
             </div>
           </div>
         </div>
