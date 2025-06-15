@@ -82,19 +82,26 @@ export function HeroSection() {
           </div>
 
           <div className={`relative ${inView ? "animate-fade-in animate-delay-400" : "opacity-0"}`}>
-            <div className="relative h-[250px] md:h-[400px] w-full rounded-xl overflow-hidden shadow-2xl">
-              <Image src="/gdg-logo.png" alt="GDG Augustana" fill className="object-cover" sizes="(max-width: 640px) 100vw,
-             (max-width: 768px) 70vw,
-             (max-width: 1024px) 50vw,
-             60vw"
-      priority />
+            <div className="relative h-[200px] sm:h-[250px] md:h-[300px] lg:h-[400px] w-full rounded-xl overflow-hidden">
+              <Image 
+                src="/gdg-logo.png" 
+                alt="GDG Augustana" 
+                fill 
+                className="object-contain p-4 md:p-6 lg:p-8 mix-blend-multiply dark:mix-blend-normal" 
+                sizes="(max-width: 640px) 100vw,
+                       (max-width: 768px) 70vw,
+                       (max-width: 1024px) 50vw,
+                       60vw"
+                priority
+                quality={90}
+              />
             </div>
 
             {/* Google-inspired colored shapes */}
-            <div className="absolute -bottom-6 -left-6 w-12 h-12 rounded-full bg-blue-500 opacity-80"></div>
-            <div className="absolute -top-6 -right-6 w-12 h-12 rounded-full bg-red-500 opacity-80"></div>
-            <div className="absolute top-1/2 -right-6 w-12 h-12 rounded-full bg-yellow-500 opacity-80"></div>
-            <div className="absolute bottom-1/4 -left-6 w-12 h-12 rounded-full bg-green-500 opacity-80"></div>
+            <div className="absolute -bottom-4 sm:-bottom-6 -left-4 sm:-left-6 w-8 sm:w-12 h-8 sm:h-12 rounded-full bg-blue-500 opacity-80"></div>
+            <div className="absolute -top-4 sm:-top-6 -right-4 sm:-right-6 w-8 sm:w-12 h-8 sm:h-12 rounded-full bg-red-500 opacity-80"></div>
+            <div className="absolute top-1/2 -right-4 sm:-right-6 w-8 sm:w-12 h-8 sm:h-12 rounded-full bg-yellow-500 opacity-80"></div>
+            <div className="absolute bottom-1/4 -left-4 sm:-left-6 w-8 sm:w-12 h-8 sm:h-12 rounded-full bg-green-500 opacity-80"></div>
           </div>
         </div>
       </div>

@@ -1,10 +1,22 @@
+"use client"
 import Image from "next/image"
 import { Github, Linkedin, Mail, Twitter } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Cta } from "../cta"
+import { useInView } from "react-intersection-observer"
 
 export default function TeamPage() {
+  const { ref: heroRef, inView: heroInView } = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  })
+
+  const { ref: teamRef, inView: teamInView } = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  })
+
   const execBoard = [
     {
       name: "Quinxie Doan",
@@ -91,11 +103,11 @@ export default function TeamPage() {
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
       <section className="py-20 px-4 md:px-6 lg:px-8 bg-gradient-to-br from-blue-50 to-indigo-100">
-        <div className="container mx-auto max-w-6xl text-center">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">
+        <div ref={heroRef} className="container mx-auto max-w-6xl text-center">
+          <h1 className={`text-4xl md:text-6xl font-bold mb-6 ${heroInView ? "animate-fade-up" : "opacity-0"}`}>
             Meet Our <span className="text-blue-600">Team</span>
           </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className={`text-xl text-gray-600 max-w-3xl mx-auto ${heroInView ? "animate-fade-up animate-delay-100" : "opacity-0"}`}>
             The passionate individuals who make GDG Augustana a thriving community of learners, builders, and
             innovators.
           </p>
@@ -104,19 +116,28 @@ export default function TeamPage() {
 
       {/* Executive Board */}
       <section className="py-16 px-4 md:px-6 lg:px-8 bg-white">
-        <div className="container mx-auto max-w-6xl">
+        <div ref={teamRef} className="container mx-auto max-w-6xl">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Executive Board</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
+            <h2 className={`text-3xl md:text-4xl font-bold mb-4 ${teamInView ? "animate-fade-up" : "opacity-0"}`}>Executive Board</h2>
+            <p className={`text-gray-600 max-w-2xl mx-auto ${teamInView ? "animate-fade-up animate-delay-100" : "opacity-0"}`}>
               Our leadership team is dedicated to fostering growth, innovation, and community within GDG Augustana.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {execBoard.map((member, index) => (
-              <Card key={index} className="overflow-hidden hover:shadow-xl transition-all duration-300">
+              <Card key={index} className={`overflow-hidden hover:shadow-xl transition-all duration-300 ${teamInView ? `animate-fade-up animate-delay-${(index + 1) * 100}` : "opacity-0"}`}>
                 <div className="relative h-64 w-full">
-                  <Image src={member.image || "/placeholder.svg"} alt={member.name} fill className="object-cover" />
+                  <Image 
+                    src={member.image || "/placeholder.svg"} 
+                    alt={member.name} 
+                    fill 
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw,
+                           (max-width: 1200px) 50vw,
+                           25vw"
+                    loading={index < 4 ? "eager" : "lazy"}
+                  />
                 </div>
                 <CardContent className="p-6">
                   <h3 className="text-xl font-bold mb-1">{member.name}</h3>
@@ -126,25 +147,24 @@ export default function TeamPage() {
                   </p>
                   <p className="text-gray-600 text-sm mb-4">{member.bio}</p>
                   <div className="flex space-x-2">
-                  <a href={member.social.linkedin} target="_blank" rel="noopener noreferrer">
-                    <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full">
-                      <Linkedin className="h-4 w-4" />
-                      <span className="sr-only">LinkedIn</span>
-                    </Button>
-                  </a>
+                    <a href={member.social.linkedin} target="_blank" rel="noopener noreferrer">
+                      <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full">
+                        <Linkedin className="h-4 w-4" />
+                        <span className="sr-only">LinkedIn</span>
+                      </Button>
+                    </a>
                     <a href={member.social.github} target="_blank" rel="noopener noreferrer">
-                        <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full">
-                          <Github className="h-4 w-4" />
-                          <span className="sr-only">GitHub</span>
-                        </Button>
+                      <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full">
+                        <Github className="h-4 w-4" />
+                        <span className="sr-only">GitHub</span>
+                      </Button>
                     </a>
                     <a href={member.social.email}>
                       <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full">
                         <Mail className="h-4 w-4" />
-                      <span className="sr-only">Email</span>
-                    </Button>
+                        <span className="sr-only">Email</span>
+                      </Button>
                     </a>
-                    
                   </div>
                 </CardContent>
               </Card>
