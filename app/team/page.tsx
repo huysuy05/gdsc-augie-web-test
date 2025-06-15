@@ -137,12 +137,12 @@ export default function TeamPage() {
                           <span className="sr-only">GitHub</span>
                         </Button>
                     </a>
-                    {/* <a href={member.social.email}>
+                    <a href={member.social.email}>
                       <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full">
                         <Mail className="h-4 w-4" />
                       <span className="sr-only">Email</span>
                     </Button>
-                    </a> */}
+                    </a>
                     
                   </div>
                 </CardContent>

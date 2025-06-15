@@ -11,7 +11,7 @@ export function Footer() {
             <p className="text-sm text-gray-600 dark:text-gray-400">
               A community of developers interested in Google developer technologies.
             </p>
-            <div className="flex space-x-4">
+            {/* <div className="flex space-x-4">
               <Link href="#" className="text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-500">
                 <Twitter className="h-5 w-5" />
                 <span className="sr-only">Twitter</span>
@@ -32,7 +32,7 @@ export function Footer() {
                 <Youtube className="h-5 w-5" />
                 <span className="sr-only">YouTube</span>
               </Link>
-            </div>
+            </div> */}
           </div>
 
           <div>
@@ -134,8 +134,8 @@ export function Footer() {
               <p>639 38th Street</p>
               <p>Rock Island, IL 61201</p>
               <p className="pt-2">
-                <a href="mailto:gdg@augustana.edu" className="hover:text-blue-600 dark:hover:text-blue-500">
-                  gdg@augustana.edu
+                <a href="mailto:hieunguyen23@augustana.edu" className="hover:text-blue-600 dark:hover:text-blue-500">
+                  hieunguyen23@augustana.edu
                 </a>
               </p>
             </address>

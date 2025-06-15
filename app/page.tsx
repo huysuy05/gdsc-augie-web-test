@@ -101,9 +101,11 @@ export default async function Home() {
             Be part of a growing community of developers, designers, and tech enthusiasts at Augustana College.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Button className="bg-white text-blue-700 hover:bg-gray-100">Become a Member</Button>
-            <Button variant="outline" className="text-white border-white hover:bg-blue-800">
-              Contact Us
+            {/* Become a Member */}
+            {/* Contact Us */}
+            <Button variant="outline" className="boder-white bg-white text-blue-700 hover:bg-blue-700 hover:text-white">Become a Member</Button>
+            <Button variant="outline" className="border-white hover:bg-blue-700 text-blue-700 hover:text-white">
+            Contact Us
             </Button>
           </div>
         </div>
