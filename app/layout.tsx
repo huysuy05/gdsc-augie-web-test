@@ -17,12 +17,16 @@ export const metadata: Metadata = {
   title: "Google Developer Group - Augustana College",
   description: "Official website of the Google Developer Group at Augustana College",
   generator: 'GDG Team',
-  viewport: 'width=device-width, initial-scale=1',
-  themeColor: '#ffffff',
   manifest: '/manifest.json',
   icons: {
     icon: '/favicon.ico',
   }
+}
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#ffffff"
 }
 
 export default function RootLayout({

@@ -1,0 +1,15 @@
+{
+  "name": "Google Developer Group - Augustana College",
+  "short_name": "GDG Augustana",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "description": "Official website of the Google Developer Group at Augustana College",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    }
+  ]
+}
