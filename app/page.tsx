@@ -6,6 +6,7 @@ import { WorkshopCard } from "@/components/workshop-card"
 import { HeroSection } from "@/components/hero-section"
 import { TeamSection } from "@/components/team-section"
 import { UpcomingEvents } from "@/components/upcoming-events"
+import { Cta } from "./cta"
 
 // import { getWorkshops, getUpcomingEvents } from "@/lib/database"
 
@@ -62,25 +63,6 @@ export default async function Home() {
             </p>
           </div>
 
-          {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {workshops.slice(0, 3).map((workshop) => (
-              <WorkshopCard
-                key={workshop.id}
-                title={workshop.title}
-                date={new Date(workshop.date).toLocaleDateString("en-US", {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                })}
-                image={workshop.image_url}
-                description={workshop.description}
-                tags={workshop.tags}
-                presenter={workshop.presenter}
-                attendees={workshop.attendees_count}
-              />
-            ))}
-          </div> */}
-
           <div className="mt-10 text-center">
             <Button variant="outline" className="group">
               View All Workshops
@@ -89,27 +71,7 @@ export default async function Home() {
           </div>
         </div>
       </section>
-
-      {/* Team Section */}
-      <TeamSection />
-
-      {/* CTA Section */}
-      <section className="py-16 px-4 md:px-6 lg:px-8 bg-gradient-to-r from-blue-600 to-blue-700 text-white">
-        <div className="container mx-auto max-w-6xl text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Join Our Community Today</h2>
-          <p className="text-lg text-blue-100 max-w-2xl mx-auto mb-8">
-            Be part of a growing community of developers, designers, and tech enthusiasts at Augustana College.
-          </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
-            {/* Become a Member */}
-            {/* Contact Us */}
-            <Button variant="outline" className="boder-white bg-white text-blue-700 hover:bg-blue-700 hover:text-white">Become a Member</Button>
-            <Button variant="outline" className="border-white hover:bg-blue-700 text-blue-700 hover:text-white">
-            Contact Us
-            </Button>
-          </div>
-        </div>
-      </section>
+      <Cta title={"Join Our Community Today"} description={"Be part of a growing community of developers, designers, and tech enthusiasts at Augustana College."} btn1={"Become a Member"} btn2={"Contact Us"}/>
     </div>
   )
 }
