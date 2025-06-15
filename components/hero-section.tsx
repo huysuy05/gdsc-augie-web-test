@@ -7,7 +7,8 @@ import { useInView } from "react-intersection-observer"
 export function HeroSection() {
   const { ref, inView } = useInView({
     triggerOnce: true,
-    threshold: 0.1,
+    threshold: 0,
+    initialInView: true
   })
 
   return (
