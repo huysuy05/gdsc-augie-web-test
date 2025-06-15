@@ -155,7 +155,8 @@ export default function TeamPage() {
 
 
       {/* Join Team CTA */}
-      <Cta title={"Want to Join Our Team?"} description={"We're always looking for passionate individuals to help us grow our community. Whether you're interested in events, mentoring others, or leading technical initiatives."} btn1={"Apply to Join"} btn2={"Learn More"}/>
+      <Cta title={"Want to Join Our Team?"} description={"We're always looking for passionate individuals to help us grow our community. Whether you're interested in events, mentoring others, or leading technical initiatives."} 
+      btn1={"Apply to Join"} btn2={"Learn More"}/>
 
     </div>
   )
