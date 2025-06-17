@@ -60,7 +60,7 @@ export default function TeamPage() {
     {
       name: "Tram Nguyen",
       role: "Public Chair Relation",
-      image: "/placeholder-user.jpg",
+      image: "/Tram.jpeg",
       bio: "Focused on building an inclusive tech community and organizing engaging events for all skill levels.",
       year: "Sophomore",
       major: "Computer Science",
