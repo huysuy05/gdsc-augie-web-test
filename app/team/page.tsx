@@ -73,7 +73,7 @@ export default function TeamPage() {
     {
       name: "Ismael Otmani",
       role: "Tech Lead",
-      image: "/placeholder-user.jpg",
+      image: "/Ismael.jpg",
       bio: "Focused on building an inclusive tech community and organizing engaging events for all skill levels.",
       year: "Sophomore",
       major: "Computer Science",
@@ -86,7 +86,7 @@ export default function TeamPage() {
     {
       name: "Solyana Sebhatu",
       role: "Treasurer",
-      image: "/placeholder-user.jpg",
+      image: "/Solyana.jpg",
       bio: "Focused on building an inclusive tech community and organizing engaging events for all skill levels.",
       year: "Sophomore",
       major: "Computer Science",
