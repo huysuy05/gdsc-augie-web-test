@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - '8000:8000'
+    environment:
+      - DATABASE_URL=postgresql+asyncpg://postgres:postgres@db:5432/clubdb
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+    restart: unless-stopped
+
+  db:
+    image: postgres:15-alpine #Postgres version
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_USER=gdsc
+      - POSTGRES_PASSWORD=gdsc_exec
+      - POSTGRES_DB=clubdb
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
