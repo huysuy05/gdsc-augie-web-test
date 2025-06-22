@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input"
 import Link from "next/link";
 
 
+
 export function Cta({title, description, btn1, btn2}) {
     const [ showModal, setShowModal ] = useState(false);
 
@@ -39,11 +40,17 @@ export function Cta({title, description, btn1, btn2}) {
                                 className="bg-white p-4 "
                             >
                                 <div className="flex flex-col gap-4 max-w-[400px] text-black">
-                                    <h2 className="text-xl md:text-4xl font-bold mb-6 !text-black">Enter your email here</h2>
+                                    <h2 className="!font-bold mb-6 !text-black">Enter your email here</h2>
                                     <Input id="email" type="email" placeholder="your.email@augustana.edu" />
                                     <div className="flex gap-4 mt-5">
-                                        <Button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-500" onClick={handleSignUpEmail}>Submit</Button>
-                                        <Button className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-500" onClick={() => {setShowModal(false)}}>Cancel</Button>
+                                        <Button variant="default" className="!bg-blue-700 text-white px-4 py-2 rounded !hover:bg-blue-500" onClick={handleSignUpEmail}>Submit</Button>
+                                        <Button
+                                                variant="destructive"
+                                                className="!bg-gray-500 !text-black px-4 py-2 rounded !hover:bg-gray-600"
+                                                onClick={() => setShowModal(false)}
+                                        >
+                                        Cancel
+                                        </Button>
                                     </div>
                                 </div>
                             </div>
