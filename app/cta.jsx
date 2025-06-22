@@ -1,8 +1,21 @@
-import React from "react";
+"use client"
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input"
 import Link from "next/link";
 
+
 export function Cta({title, description, btn1, btn2}) {
+    const [ showModal, setShowModal ] = useState(false);
+
+
+    const handleSignUpEmail = () => {
+        setShowModal(false);
+        alert("Email submited successfully, our team will talk to you soon!");
+    }
+
+
+
     return (
         <section className="py-16 px-4 md:px-6 lg:px-8 bg-blue-600 text-white">
             <div className="container mx-auto max-w-6xl text-center">
@@ -11,9 +24,31 @@ export function Cta({title, description, btn1, btn2}) {
                     {description}
                 </p>
                 <div className="flex flex-col sm:flex-row justify-center gap-4">
-                    <Button variant="outline" className="border-white bg-red hover:bg-blue-700 hover:text-white">
+                    <Button variant="outline" className="border-white bg-red hover:bg-blue-700 hover:text-white" onClick={() => {
+                        setShowModal(true)
+                    }}>
                         {btn1}
                     </Button>
+                    {showModal && (
+                        <div 
+                            onClick={() => {setShowModal(false)}}
+                            className="fixed bg-black/50 min-h-screen z-10 w-screen flex justify-center items-center top-0 left-0"
+                        >
+                            <div 
+                                onClick={(e) => e.stopPropagation()}
+                                className="bg-white p-4 "
+                            >
+                                <div className="flex flex-col gap-4 max-w-[400px] text-black">
+                                    <h2 className="text-xl md:text-4xl font-bold mb-6 !text-black">Enter your email here</h2>
+                                    <Input id="email" type="email" placeholder="your.email@augustana.edu" />
+                                    <div className="flex gap-4 mt-5">
+                                        <Button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-500" onClick={handleSignUpEmail}>Submit</Button>
+                                        <Button className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-500" onClick={() => {setShowModal(false)}}>Cancel</Button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    )}
                     <Link href="/contact">
                         <Button variant="outline" className="border-white bg-black text-red-700 hover:bg-blue-700 hover:text-white">
                         {btn2}
