@@ -18,14 +18,14 @@ export function Cta({title, description, btn1, btn2}) {
 
 
     return (
-        <section className="py-16 px-4 md:px-6 lg:px-8 bg-blue-600 text-white">
+        <section className="py-16 px-4 md:px-6 lg:px-8 bg-blue-600 text-black">
             <div className="container mx-auto max-w-6xl text-center">
-                <h2 className="text-3xl md:text-4xl font-bold mb-6 text-black">{title}</h2>
-                <p className="text-lg text-blue-100 max-w-2xl mx-auto mb-8">
+                <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">{title}</h2>
+                <p className="text-lg text-white max-w-2xl mx-auto mb-8">
                     {description}
                 </p>
                 <div className="flex flex-col sm:flex-row justify-center gap-4">
-                    <Button variant="outline" className="border-white bg-red hover:bg-blue-700 hover:text-white" onClick={() => {
+                    <Button variant="outline" className="border-white bg-red hover:bg-blue-700 hover:text-white text-white" onClick={() => {
                         setShowModal(true)
                     }}>
                         {btn1}
@@ -40,7 +40,7 @@ export function Cta({title, description, btn1, btn2}) {
                                 className="bg-white p-4 "
                             >
                                 <div className="flex flex-col gap-4 max-w-[400px] text-black">
-                                    <h2 className="!font-bold mb-6 !text-black">Enter your email here</h2>
+                                    <h3>Enter your email here</h3>
                                     <Input id="email" type="email" placeholder="your.email@augustana.edu" />
                                     <div className="flex gap-4 mt-5">
                                         <Button variant="default" className="!bg-blue-700 text-white px-4 py-2 rounded !hover:bg-blue-500" onClick={handleSignUpEmail}>Submit</Button>
@@ -57,7 +57,7 @@ export function Cta({title, description, btn1, btn2}) {
                         </div>
                     )}
                     <Link href="/contact">
-                        <Button variant="outline" className="border-white bg-black text-red-700 hover:bg-blue-700 hover:text-white">
+                        <Button variant="outline" className="border-white bg-black text-white hover:bg-blue-700 hover:text-white">
                         {btn2}
                         </Button>
                     </Link>
