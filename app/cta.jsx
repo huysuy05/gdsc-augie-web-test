@@ -1,5 +1,6 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export function Cta({title, description, btn1, btn2}) {
     return (
@@ -13,9 +14,12 @@ export function Cta({title, description, btn1, btn2}) {
                     <Button variant="outline" className="border-white bg-red hover:bg-blue-700 hover:text-white">
                         {btn1}
                     </Button>
-                    <Button variant="outline" className="border-white bg-black text-red-700 hover:bg-blue-700 hover:text-white">
+                    <Link href="/contact">
+                        <Button variant="outline" className="border-white bg-black text-red-700 hover:bg-blue-700 hover:text-white">
                         {btn2}
-                    </Button>
+                        </Button>
+                    </Link>
+                    
                 </div>
             </div>
         </section>
