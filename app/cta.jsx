@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input"
 import Link from "next/link";
@@ -15,7 +15,17 @@ export function Cta({title, description, btn1, btn2}) {
         alert("Email submited successfully, our team will talk to you soon!");
     }
 
+    useEffect(() => {
+        if (showModal) {
+            document.body.style.overflow = "hidden";
 
+        } else {
+            document.body.style.overflow = "";
+        }
+        return () => {
+            document.body.style.overflow = "";
+        }
+    }, [showModal])
 
     return (
         <section className="py-16 px-4 md:px-6 lg:px-8 bg-blue-600 text-black">
@@ -33,7 +43,7 @@ export function Cta({title, description, btn1, btn2}) {
                     {showModal && (
                         <div 
                             onClick={() => {setShowModal(false)}}
-                            className="fixed bg-black/50 min-h-screen z-10 w-screen flex justify-center items-center top-0 left-0"
+                            className="fixed min-h-screen z-10 w-screen flex justify-center items-center top-0 left-0"
                         >
                             <div 
                                 onClick={(e) => e.stopPropagation()}
