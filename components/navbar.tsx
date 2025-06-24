@@ -33,8 +33,8 @@ export function Navbar() {
         <div className="flex h-16 items-center justify-between">
           <div className="flex items-center">
             <Link href="/" className="flex items-center space-x-2">
-              <div className="relative h-8 w-8">
-                <Image src="/placeholder.svg?height=32&width=32" alt="GDG Logo" fill className="object-contain" />
+              <div className="relative h-10 w-10">
+                <Image src="/placeholder-logo.png" alt="GDG Logo" fill className="object-contain" />
               </div>
               <span className="font-bold text-xl hidden md:inline-block">GDG Augustana</span>
             </Link>

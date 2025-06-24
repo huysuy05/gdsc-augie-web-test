@@ -12,8 +12,8 @@ export function TeamSection() {
 
   const teamMembers = [
     {
-      name: "Alex Johnson",
-      role: "Lead Organizer",
+      name: "Quinxie Doan",
+      role: "President",
       image: "/placeholder.svg?height=300&width=300",
       bio: "Computer Science major with a passion for web development and AI.",
       social: {
@@ -24,8 +24,8 @@ export function TeamSection() {
       },
     },
     {
-      name: "Maria Rodriguez",
-      role: "Technical Lead",
+      name: "Hieu Nguyen",
+      role: "Vice President",
       image: "/placeholder.svg?height=300&width=300",
       bio: "Experienced in Android development and Firebase. Google certified developer.",
       social: {
@@ -36,8 +36,8 @@ export function TeamSection() {
       },
     },
     {
-      name: "David Kim",
-      role: "Workshop Coordinator",
+      name: "Huy Nguyen",
+      role: "Secretary",
       image: "/placeholder.svg?height=300&width=300",
       bio: "Passionate about teaching and sharing knowledge in machine learning.",
       social: {
@@ -48,8 +48,8 @@ export function TeamSection() {
       },
     },
     {
-      name: "Sarah Chen",
-      role: "Community Manager",
+      name: "Solyana Sebatu",
+      role: "Treasurer",
       image: "/placeholder.svg?height=300&width=300",
       bio: "Focused on building an inclusive tech community at Augustana College.",
       social: {
@@ -57,6 +57,32 @@ export function TeamSection() {
         linkedin: "#",
         github: "#",
         email: "mailto:sarah@example.com",
+      },
+    },
+
+    {
+      name: "Ismael Otmani",
+      role: "Tech Lead",
+      image: "/placeholder.svg?height=300&width=300",
+      bio: "Focused on building an inclusive tech community at Augustana College.",
+      social: {
+        twitter: "#",
+        linkedin: "#",
+        github: "#",
+        email: "mailto:sarah@example.com",
+      },
+    },
+
+    {
+      name: "Tram Nguyen",
+      role: "Public Relation",
+      image: "/placeholder.svg?height=300&width=300",
+      bio: "Focused on building an inclusive tech community at Augustana College.",
+      social: {
+        twitter: "#",
+        linkedin: "#",
+        github: "#",
+        email: "mailto:tramnguyen24@gmail.com",
       },
     },
   ]
@@ -75,7 +101,7 @@ export function TeamSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {teamMembers.map((member, index) => (
             <div
               key={index}

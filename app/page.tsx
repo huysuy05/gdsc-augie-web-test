@@ -6,6 +6,8 @@ import { WorkshopCard } from "@/components/workshop-card"
 import { HeroSection } from "@/components/hero-section"
 import { TeamSection } from "@/components/team-section"
 import { UpcomingEvents } from "@/components/upcoming-events"
+import { GallerySection } from "@/components/GallerySection"
+
 
 import { getWorkshops, getUpcomingEvents } from "@/lib/database"
 
@@ -92,6 +94,9 @@ export default async function Home() {
 
       {/* Team Section */}
       <TeamSection />
+
+      {/* Gallery Section */}
+      <GallerySection />
 
       {/* CTA Section */}
       <section className="py-16 px-4 md:px-6 lg:px-8 bg-gradient-to-r from-blue-600 to-blue-700 text-white">
