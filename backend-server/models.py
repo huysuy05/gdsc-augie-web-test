@@ -30,6 +30,9 @@ class Registration(Base):
     registered_on = Column(DateTime, default=datetime.datetime.now)
     worshops = relationship("Workshops", back_populates="title")
 
+class Admin(Base):
+    pass
+
 
 
 
