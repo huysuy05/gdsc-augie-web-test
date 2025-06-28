@@ -50,6 +50,8 @@ export function Cta({title, description, btn1, btn2}) {
                                 className="bg-white p-4 "
                             >
                                 <div className="flex flex-col gap-4 max-w-[400px] text-black">
+                                    <h3>Your Full Name: </h3>
+                                    <Input id="name" type="name" placeholder="Type your name here" />
                                     <h3>Enter your email here</h3>
                                     <Input id="email" type="email" placeholder="your.email@augustana.edu" />
                                     <div className="flex gap-4 mt-5">
