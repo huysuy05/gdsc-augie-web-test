@@ -35,18 +35,8 @@ class Registration(Base):
 class Admin(Base):
     __tablename__ = "admins-db"
     id = Column(Integer, primary_key=True, index=True)
-    name = Column(String)
-    email = Column(String)
-    role = Column(String)
-    created_at = Column(DateTime, default=datetime.datetime.now)
-    last_login = Column(DateTime)
-    hashed_password = Column(String)
-    managed_workshops = relationship("Workshops", back_populates="organizer")
-    # Permissions
-    can_edit_workshops = Column(Boolean, default=False)
-    can_create_workshops = Column(Boolean, default=False)
-    can_remove_workshops = Column(Boolean, default=False)
-    can_manage_members = Column(Boolean, default=False)
+    username = Column(String)
+    password = Column(String)
     
 
 
