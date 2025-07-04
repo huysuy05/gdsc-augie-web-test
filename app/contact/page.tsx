@@ -1,4 +1,5 @@
 "use client"
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -6,6 +7,10 @@ import { Mail, MapPin, Phone } from "lucide-react"
 import { useInView } from "react-intersection-observer"
 
 export default function ContactPage() {
+// Add contact form
+  const [form, setForm] = useState({name: '', email: '', message: ''})
+  const [status, setStatus] = useState("")
+
   const { ref: heroRef, inView: heroInView } = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -21,6 +26,46 @@ export default function ContactPage() {
     threshold: 0.1,
   })
 
+  const handleMailChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setForm({ ...form, [e.target.name]: e.target.value })
+  }
+
+
+
+  // HANDLE FORM SUBMISSION
+  const handleMaiSend = async (e: React.FormEvent) => {
+      e.preventDefault()
+      setStatus("Sending...")
+
+
+      try {
+        const res = await fetch("http://localhost:8000/send-mail/", {
+          method: "POST",
+          headers: {"Content-Type": "application/json"},
+          body: JSON.stringify({
+            subject: `Contact from ${form.name} (${form.email})`,
+          body: form.message,
+          }),
+        })
+
+         if (res.ok){
+          setStatus("Message Sent! Thanks for contacting us")
+          setForm({ name: "", email: "", message: "" })
+         }
+         else {
+          setStatus("Failed to send message. Don't worry this is on us.")
+         }
+      }
+      catch (err) {
+        setStatus("Failed to send message. Don't worry this is on us.")
+      }
+  }
+
+  
+
+
+
+
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
@@ -33,27 +78,34 @@ export default function ContactPage() {
             Have questions about our events or want to collaborate? We'd love to hear from you.
           </p>
         </div>
-      </section>
-
-      {/* Contact Form and Info */}
-      <section className="py-16 px-4 md:px-6 lg:px-8 bg-white">
+        {/* Contact Form and Info */}
         <div className="container mx-auto max-w-6xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Contact Form */}
             <div ref={formRef} className={`bg-white rounded-lg shadow-lg p-8 ${formInView ? "animate-fade-up" : "opacity-0"}`}>
               <h2 className="text-2xl font-bold mb-6">Send us a Message</h2>
-              <form className="space-y-6">
+              <form className="space-y-6" onSubmit={handleMaiSend}>
                 <div className="space-y-2">
                   <label htmlFor="name" className="text-sm font-medium">
                     Name
                   </label>
-                  <Input id="name" placeholder="Your name" />
+                  <Input id="name"
+                         name="name"
+                         placeholder="Your name" 
+                         value={form.name} 
+                         onChange={handleMailChange} 
+                         required/>
                 </div>
                 <div className="space-y-2">
                   <label htmlFor="email" className="text-sm font-medium">
                     Email
                   </label>
-                  <Input id="email" type="email" placeholder="your.email@example.com" />
+                  <Input id="email"
+                          name="email"
+                          placeholder="your.email@example.com"
+                          value={form.email}
+                          onChange={handleMailChange}
+                          required />
                 </div>
                 <div className="space-y-2">
                   <label htmlFor="message" className="text-sm font-medium">
@@ -61,11 +113,16 @@ export default function ContactPage() {
                   </label>
                   <Textarea
                     id="message"
-                    placeholder="Your message..."
+                    name="message"
+                    placeholder="Tell us something..."
                     className="min-h-[150px]"
+                    value={form.message}
+                    onChange={handleMailChange}
+                    required
                   />
                 </div>
                 <Button className="w-full">Send Message</Button>
+                {status && <p className="text-center mt-2">{status}</p>}
               </form>
             </div>
 
@@ -91,14 +148,14 @@ export default function ContactPage() {
                     <Mail className="h-6 w-6 text-blue-600 mt-1" />
                     <div>
                       <h3 className="font-medium">Email</h3>
-                      <p className="text-gray-600">gdg@augustana.edu</p>
+                      <p className="text-gray-600">hieunguyen23@augustana.edu</p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-4">
                     <Phone className="h-6 w-6 text-blue-600 mt-1" />
                     <div>
                       <h3 className="font-medium">Phone</h3>
-                      <p className="text-gray-600">(309) 794-7000</p>
+                      <p className="text-gray-600">(309) 631-5134</p>
                     </div>
                   </div>
                 </div>
