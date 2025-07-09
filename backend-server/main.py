@@ -2,7 +2,7 @@ from fastapi import FastAPI, Request
 import uvicorn
 # Libs for receiving emails
 import os
-from utils.email import send_email
+from utils import emails
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -19,7 +19,7 @@ async def send_email(request: Request):
     subject = data.get("subject", "No Subject")
     body = data.get("body", "")
     to_email = os.getenv("EMAIL_USER")  
-    send_email(subject, body, to_email)
+    emails.send_email(subject, body, to_email)
     return {"message": "Email sent successfully"}
 
 

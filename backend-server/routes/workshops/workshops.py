@@ -1,4 +1,7 @@
 from fastapi import APIRouter
+from .. import schemas, database, oauth2
+from typing import List
+
 
 route = APIRouter(
     tags=["workshops"],
@@ -6,6 +9,6 @@ route = APIRouter(
 )
 
 
-@route.get("/")
+@route.get("/", response_model=List[schemas.showWorkshops])
 def fetch_all_workshops():
     return "Fetching"
