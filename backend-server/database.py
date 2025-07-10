@@ -10,13 +10,16 @@ from dotenv import load_dotenv
 load_dotenv()
 
 ############ DEFINE AN URL FOR THE SQLITE DB ##################
-# This creates/connects to a file named 'gdg.db' in the current directory
-SQLALCHEMY_DATABASE_URL = os.getenv("DATABASE_URL") + "?sslmode=require" #Connect to the blog database
+# This creates/connects to the Supabase database.
+SQLALCHEMY_DATABASE_URL = os.getenv("DATABASE_URL") #Connect to the workshop database
+
+if not SQLALCHEMY_DATABASE_URL:
+    raise ValueError("DATABASE_URL env variables is not yet set")
 
 
 ###### This creates/connects to a file named 'gdg.db' in the current directory ######
 ### connect_args{...} allows multiple threads to open a connection with the db
-engine = create_engine(SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False})
+engine = create_engine(SQLALCHEMY_DATABASE_URL)
 
 # Creates a Factory for db session objects using SQLAlchemy.
 SessionLocal = sessionmaker(bind=engine, autoflush=False, autocommit=False)
