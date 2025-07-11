@@ -4,7 +4,7 @@ from pydantic import BaseModel
 from typing import List
 from sqlalchemy import DateTime
 
-
+# Define a Pydantic Model for Workshop data.
 class WorkShops(BaseModel):
     title: str
     description: str
@@ -15,8 +15,23 @@ class WorkShops(BaseModel):
 
 class ShowWorkShops(WorkShops):
     class Config:
-        arbitrary_types_allowed = True
         from_attributes = True
+
+
+class StudentsSignUp(BaseModel):
+    name: str
+    email: str
+
+class RegisStudent(BaseModel):
+    name: str
+    email: str
+    registered_on: DateTime
+    
+
+
+class AdminLogin(BaseModel):
+    username: str
+    password: str
     
 
 

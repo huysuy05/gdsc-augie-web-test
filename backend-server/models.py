@@ -13,8 +13,7 @@ class Workshops(Base):
     updated_at = Column(DateTime, default=datetime.datetime.now, onupdate=datetime.datetime.now)
     location = Column(String)
     attendees = relationship("Registration", back_populates="name")
-    organizer = relationship("Admin", back_populates="managed_workshops")
-    organizer_id = Column(Integer, ForeignKey("admins-db.id"))
+
 
 
 class Student(Base):
