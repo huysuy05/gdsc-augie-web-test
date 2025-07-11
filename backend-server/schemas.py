@@ -12,6 +12,7 @@ class WorkShops(BaseModel):
     class Config:
         arbitrary_types_allowed = True
 
+
 class ShowWorkShops(WorkShops):
     class Config:
         arbitrary_types_allowed = True
