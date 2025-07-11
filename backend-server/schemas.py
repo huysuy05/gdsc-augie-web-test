@@ -9,6 +9,13 @@ class WorkShops(BaseModel):
     title: str
     description: str
     date: DateTime
+    class Config:
+        arbitrary_types_allowed = True
+
+class ShowWorkShops(WorkShops):
+    class Config:
+        arbitrary_types_allowed = True
+        from_attributes = True
     
 
 

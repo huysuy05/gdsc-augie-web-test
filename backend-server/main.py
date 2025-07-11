@@ -4,9 +4,9 @@ import uvicorn
 import os
 # from utils import emails
 from dotenv import load_dotenv
-from . import models
-from .database import engine
-from .routes import workshops
+import models
+from database import engine
+from routes import workshops
 load_dotenv()
 
 
@@ -32,5 +32,5 @@ def test_api():
 
 
 # if __name__ == "__main__":
-#     # uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
+#     uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
 
