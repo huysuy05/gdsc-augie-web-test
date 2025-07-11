@@ -28,7 +28,7 @@ export function WorkshopCard({ title, date, image, description, tags, presenter,
     >
       <div className="relative h-48 w-full overflow-hidden">
         <Image
-          src={image || "/placeholder.svg"}
+          src={image || "/everyone.jpg"}
           alt={title}
           fill
           className={`object-cover transition-transform duration-500 ${isHovered ? "scale-110" : "scale-100"}`}
