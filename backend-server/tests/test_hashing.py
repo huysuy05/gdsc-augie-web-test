@@ -11,3 +11,10 @@ def test_bcrypt_hash_and_verify():
     # Hashed password should be verified with original password
     assert Hash.verify(hashed_pw, password)
     assert not Hash.verify(hashed_pw, "wrongpassword")
+
+def test_bcrypt_hash_is_unique():
+    password = "Testing password"
+    hash1 = Hash.bcrypt(password)
+    hash2 = Hash.bcrypt(password)
+
+    assert hash1 != hash2
