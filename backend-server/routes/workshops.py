@@ -21,5 +21,5 @@ def fetch_single_workshop(db: Session = Depends(database.get_db)):
 
 
 @router.post("/", status_code=status.HTTP_201_CREATED)
-def create_post(response: schemas.WorkShops, db: Session = Depends(database.get_db)):
-    pass
+def create_post(response: schemas.Workshops, db: Session = Depends(database.get_db)):
+    return workshops.create_post(response, db)

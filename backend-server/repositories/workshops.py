@@ -1,9 +1,7 @@
 from sqlalchemy.orm import Session
-from sqlalchemy import DateTime
-import models
+import models, schemas
 from fastapi import HTTPException, status
-
-
+from datetime import datetime
 
 
 # A GET method to fetch all workshops from the db
@@ -22,8 +20,19 @@ def get_single(id: int, db: Session):
     return single
 
 # A POST method to create a new workshop
-def add_post(db:Session):
-    return "Test endpoints"
+def create_post(request: schemas.Workshops, db:Session):
+    new_data = models.Workshops(title=request.title, 
+                                description=request.description, 
+                                date=datetime.now(),
+                                created_at=datetime.now(),
+                                updated_at=datetime.now(),
+                                location=request.location,
+                                )
+    db.add(new_data)
+    db.commit()
+    db.refresh(new_data)
+
+    return new_data
 
 # A PUT Method to update an existing workshop
 def update_post(db: Session):

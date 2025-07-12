@@ -4,16 +4,34 @@ from pydantic import BaseModel
 from typing import List
 from datetime import datetime
 
-# Define a Pydantic Model for Workshop data.
-class WorkShops(BaseModel):
+# Define a Pydantic Model for Workshop Creation.
+class WorkShopsBase(BaseModel):
     title: str
-    description: str
-    date: datetime
+    
     # class Config:
     #     arbitrary_types_allowed = True
 
+class Workshops(WorkShopsBase):
+    description: str
+    date: datetime
+    location: str
+    class Config():
+        from_attributes = True
 
-class ShowWorkShops(WorkShops):
+class RegisStudent(BaseModel):
+    name: str
+    email: str
+    registered_on: datetime
+    workshops: List[WorkShopsBase]
+
+    # class Config():
+    #     arbitrary_types_allowed = True
+
+class ShowWorkShops(Workshops):
+    id: int
+    created_at: datetime
+    updated_at: datetime
+    attendees: List[RegisStudent]
     class Config:
         from_attributes = True
 
@@ -23,12 +41,6 @@ class StudentsSignUp(BaseModel):
     email: str
 
 
-class RegisStudent(BaseModel):
-    name: str
-    email: str
-    registered_on: datetime
-    # class Config():
-    #     arbitrary_types_allowed = True
 
 
 class AdminLogin(BaseModel):
