@@ -1,7 +1,7 @@
 # Import create_engine from SQLAlchemy to create database engine
 from sqlalchemy import create_engine
 # Import declarative_base to create base class for database models
-from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import declarative_base
 # Import sessionmaker to create database session factory
 from sqlalchemy.orm import sessionmaker
 import os
