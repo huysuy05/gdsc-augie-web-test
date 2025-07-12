@@ -27,3 +27,7 @@ def create_workshop(response: schemas.Workshops, db: Session = Depends(database.
 @router.put("/{id}", status_code=status.HTTP_202_ACCEPTED)
 def update_workshop(id: int, response: schemas.Workshops, db : Session = Depends(database.get_db)):
     return workshops.update_workshop(id, response, db)
+
+@router.delete("/{id}", status_code=status.HTTP_202_ACCEPTED)
+def delete_workshop(id: int, db : Session = Depends(database.get_db)):
+    return workshops.delete(id, db)

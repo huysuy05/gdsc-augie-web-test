@@ -43,5 +43,10 @@ def update_workshop(id: int, request: schemas.Workshops, db: Session):
     return f"Successfully Updated Workshop {id}"
 
 # A DELETE Method to delete a single workshop
-def delete(db: Session):
-    return "Test endpoints"
+def delete(id: int, db: Session):
+    workshop = db.query(models.Workshops).filter(models.Workshops.id == id)
+    if not workshop.first():
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Cannot fetch this workshop")
+    workshop.delete(synchronize_session=False)
+    db.commit()
+    return "Deleted successfully"
