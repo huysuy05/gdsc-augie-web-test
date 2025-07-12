@@ -16,7 +16,7 @@ def fetch_all_workshops(db: Session = Depends(database.get_db)):
     return workshops.get_all(db)
 
 @router.get("/{id}", status_code=status.HTTP_200_OK)
-def fetch_single_workshop(db: Session = Depends(database.get_db)):
+def fetch_single_workshop(id: int, db: Session = Depends(database.get_db)):
     return workshops.get_single(id, db)
 
 
