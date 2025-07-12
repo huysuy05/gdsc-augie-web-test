@@ -17,23 +17,31 @@ class Workshops(WorkShopsBase):
     location: str
     class Config():
         from_attributes = True
-
-class RegisStudent(BaseModel):
+        
+# Flat attendee schema for response (no reference back to workshops)
+class RegisStudentOut(BaseModel):
     name: str
     email: str
     registered_on: datetime
-    workshops: List[WorkShopsBase]
-
-    # class Config():
-    #     arbitrary_types_allowed = True
+    class Config():
+        from_attributes = True
+    
 
 class ShowWorkShops(Workshops):
     id: int
     created_at: datetime
     updated_at: datetime
-    attendees: List[RegisStudent]
+    attendees: List[RegisStudentOut] = []
     class Config:
         from_attributes = True
+
+class ShowRegisStudent(BaseModel):
+    name: str
+    email: str
+    registered_on: datetime
+    workshops: ShowWorkShops
+    class Config():
+        from_attributes = True  
 
 
 class StudentsSignUp(BaseModel):

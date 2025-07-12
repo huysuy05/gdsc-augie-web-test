@@ -12,6 +12,7 @@ class Workshops(Base):
     created_at = Column(DateTime, default=datetime.datetime.now)
     updated_at = Column(DateTime, default=datetime.datetime.now, onupdate=datetime.datetime.now)
     location = Column(String)
+    
     attendees = relationship("Registration", back_populates="workshops")
 
 
@@ -26,10 +27,10 @@ class Student(Base):
 class Registration(Base):
     __tablename__ = "regis-db"
     id = Column(Integer, primary_key=True, index=True)
-    workshops_id = Column(Integer, ForeignKey("workshops-db.id"))
     name = Column(String)
     email = Column(String)
     registered_on = Column(DateTime, default=datetime.datetime.now)
+    workshops_id = Column(Integer, ForeignKey("workshops-db.id"))
     workshops = relationship("Workshops", back_populates="attendees")
 
 class Admin(Base):

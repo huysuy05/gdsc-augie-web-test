@@ -11,15 +11,19 @@ router = APIRouter(
 )
 
 
-@router.get("/", response_model=List[schemas.ShowWorkShops])
+@router.get("/", response_model=List[schemas.ShowWorkShops], status_code=status.HTTP_200_OK)
 def fetch_all_workshops(db: Session = Depends(database.get_db)):
     return workshops.get_all(db)
 
-@router.get("/{id}", status_code=status.HTTP_200_OK)
+@router.get("/{id}", response_model=schemas.ShowWorkShops, status_code=status.HTTP_200_OK)
 def fetch_single_workshop(id: int, db: Session = Depends(database.get_db)):
     return workshops.get_single(id, db)
 
 
 @router.post("/", status_code=status.HTTP_201_CREATED)
-def create_post(response: schemas.Workshops, db: Session = Depends(database.get_db)):
+def create_workshop(response: schemas.Workshops, db: Session = Depends(database.get_db)):
     return workshops.create_post(response, db)
+
+@router.put("/{id}", status_code=status.HTTP_202_ACCEPTED)
+def update_workshop(id: int, response: schemas.Workshops, db : Session = Depends(database.get_db)):
+    return workshops.update_workshop(id, response, db)
