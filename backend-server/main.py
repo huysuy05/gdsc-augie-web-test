@@ -6,7 +6,7 @@ import os
 from dotenv import load_dotenv
 import models
 from database import engine
-from routes import workshops
+from routes import workshops, admin
 from fastapi.middleware.cors import CORSMiddleware
 load_dotenv()
 
@@ -16,6 +16,7 @@ app = FastAPI()
 models.Base.metadata.create_all(bind=engine)
 
 app.include_router(workshops.router)
+app.include_router(admin.router)
 origins = [
     "http://localhost:3000/",
     "https://v0-google-developer-group-app.vercel.app/"
