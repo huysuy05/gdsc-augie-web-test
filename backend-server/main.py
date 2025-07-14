@@ -6,7 +6,7 @@ import os
 from dotenv import load_dotenv
 import models
 from database import engine
-from routes import workshops, admin, auth
+from routes import workshops, admin
 from fastapi.middleware.cors import CORSMiddleware
 load_dotenv()
 
@@ -17,7 +17,7 @@ models.Base.metadata.create_all(bind=engine)
 
 app.include_router(workshops.router)
 app.include_router(admin.router)
-app.include_router(auth.router)
+
 
 origins = [
     "http://localhost:3000/",

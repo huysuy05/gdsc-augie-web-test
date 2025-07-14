@@ -1,8 +1,9 @@
 from fastapi import APIRouter, status, Depends
-import schemas, database
+import schemas, database, oauth2
 from typing import List
 from repositories import workshops
 from sqlalchemy.orm import Session
+
 
 
 router = APIRouter(
@@ -12,22 +13,22 @@ router = APIRouter(
 
 
 @router.get("/", response_model=List[schemas.ShowWorkShops], status_code=status.HTTP_200_OK)
-def fetch_all_workshops(db: Session = Depends(database.get_db)):
+def fetch_all_workshops(db: Session = Depends(database.get_db), cur_user: schemas.AdminLogin = Depends(oauth2.get_current_user)):
     return workshops.get_all(db)
 
 @router.get("/{id}", response_model=schemas.ShowWorkShops, status_code=status.HTTP_200_OK)
-def fetch_single_workshop(id: int, db: Session = Depends(database.get_db)):
+def fetch_single_workshop(id: int, db: Session = Depends(database.get_db), cur_user: schemas.AdminLogin = Depends(oauth2.get_current_user)):
     return workshops.get_single(id, db)
 
 
 @router.post("/", status_code=status.HTTP_201_CREATED)
-def create_workshop(response: schemas.Workshops, db: Session = Depends(database.get_db)):
+def create_workshop(response: schemas.Workshops, db: Session = Depends(database.get_db), cur_user: schemas.AdminLogin = Depends(oauth2.get_current_user)):
     return workshops.create_post(response, db)
 
 @router.put("/{id}", status_code=status.HTTP_202_ACCEPTED)
-def update_workshop(id: int, response: schemas.Workshops, db : Session = Depends(database.get_db)):
+def update_workshop(id: int, response: schemas.Workshops, db : Session = Depends(database.get_db), cur_user: schemas.AdminLogin = Depends(oauth2.get_current_user)):
     return workshops.update_workshop(id, response, db)
 
 @router.delete("/{id}", status_code=status.HTTP_202_ACCEPTED)
-def delete_workshop(id: int, db : Session = Depends(database.get_db)):
+def delete_workshop(id: int, db : Session = Depends(database.get_db), cur_user: schemas.AdminLogin = Depends(oauth2.get_current_user)):
     return workshops.delete(id, db)
