@@ -32,7 +32,7 @@ app.add_middleware(
 
 @app.get("/")
 def test_api():
-    return "hello"
+    return "This is the root url for the backend server, hit /docs to see more about the endpoints"
 
 # @app.post("/send-email/")
 # async def send_email(request: Request):
