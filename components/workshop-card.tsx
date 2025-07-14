@@ -12,13 +12,15 @@ interface WorkshopCardProps {
   date: string
   image: string
   description: string
-  tags: string[]
-  presenter?: string
+  
   attendees?: number
 }
 
-export function WorkshopCard({ title, date, image, description, tags, presenter, attendees }: WorkshopCardProps) {
-  const [isHovered, setIsHovered] = useState(false)
+export function WorkshopCard({ title, date, image, description,attendees }: WorkshopCardProps)  {
+  const [isHovered, setIsHovered] = useState(false);
+
+ 
+
 
   return (
     <Card
@@ -46,14 +48,10 @@ export function WorkshopCard({ title, date, image, description, tags, presenter,
 
       <CardContent className="p-4 pt-0">
         <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">{description}</p>
-        {presenter && <p className="text-sm text-blue-600 dark:text-blue-500 mb-2">Presenter: {presenter}</p>}
+        
         {attendees && <p className="text-sm text-gray-500 mb-4">{attendees} attendees</p>}
         <div className="flex flex-wrap gap-2">
-          {tags.map((tag, index) => (
-            <Badge key={index} variant="secondary" className="font-normal">
-              {tag}
-            </Badge>
-          ))}
+
         </div>
       </CardContent>
 

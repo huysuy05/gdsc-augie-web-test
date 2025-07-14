@@ -20,7 +20,7 @@ app.include_router(admin.router)
 
 
 origins = [
-    "http://localhost:3000/",
+    "http://localhost:3000",
     "https://v0-google-developer-group-app.vercel.app/"
 ]
 

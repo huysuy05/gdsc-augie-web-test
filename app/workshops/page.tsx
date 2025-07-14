@@ -5,12 +5,22 @@ import { WorkshopCard } from "@/components/workshop-card"
 
 //This page is using Server Side Rendering, which is rendered in the server befo
 export default async function WorkshopsPage() {
+  
+  const URL = "http://127.0.0.1:8000/workshops";
+  
+  const data = await fetch(URL, {cache: "no-store"})
+  if (!data) {
+    console.error("Failed to fetch workshops data!")
+  }
+  const res = await data.json();
+
+  console.log(res);
 
 
   return (
     <div>
-      <WorkshopCard title="Test" date="Test" image="./everyone.jpg" description="Test" tags={["test1", "test2"]} />
-      <WorkshopCard title="Test" date="Test" image="Test" description="Test" tags={["test1", "test2"]} />
+      <WorkshopCard title="Test" date="Test" image="./everyone.jpg" description="Test"  />
+      <WorkshopCard title="Test" date="Test" image="Test" description="Test" />
     </div>
   )
 }
