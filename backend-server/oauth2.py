@@ -2,7 +2,7 @@ from fastapi import Depends, HTTPException, status
 import schemas,JWT
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/admin/login")
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="admin/login")
 
 
 def get_current_user(token: str = Depends(oauth2_scheme)):

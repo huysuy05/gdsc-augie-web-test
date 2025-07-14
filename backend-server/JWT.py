@@ -15,7 +15,7 @@ def create_access_token(data: dict):
     to_encode = data.copy()
 
     # Set an expired timestamp based on the current log in time
-    expire = datetime.now(timezone.utc) + timezone(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+    expire = datetime.now(timezone.utc) + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
     # Add a new field "exp" into the log in data
     to_encode.update({"exp": expire})
     # Generate a JWT Access Token for authorization and return it
