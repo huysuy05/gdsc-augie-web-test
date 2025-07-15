@@ -31,6 +31,7 @@ export function AuthForm() {
     setError(null)
 
     try {
+        // call the adminLogin function with the passed username, password
         const data = await adminLogin(username, password);
         login(data.access_token);
         alert("Log in successfully")
@@ -92,36 +93,7 @@ export function AuthForm() {
             </form>
           </TabsContent>
 
-          {/* <TabsContent value="signup">
-            <form onSubmit={handleSignUp}>
-              <div className="space-y-4">
-                <div className="space-y-2">
-                  <Label htmlFor="fullName">Full Name</Label>
-                  <Input
-                    id="fullName"
-                    placeholder="John Doe"
-                    value={fullName}
-                    onChange={(e) => setFullName(e.target.value)}
-                    required
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="password-signup">Password</Label>
-                  <Input
-                    id="password-signup"
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                  />
-                </div>
-                <Button type="submit" className="w-full" disabled={loading}>
-                  {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
-                  Sign Up
-                </Button>
-              </div>
-            </form>
-          </TabsContent> */}
+        
         </CardContent>
         <CardFooter className="flex justify-center text-sm text-gray-600">
           <p>By continuing, you agree to our Terms of Service and Privacy Policy.</p>
