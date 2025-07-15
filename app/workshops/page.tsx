@@ -35,7 +35,7 @@ export default async function WorkshopsPage() {
               date={workshop.date}
               image="Not available"
               description={workshop.description}
-              attendees={workshop.attendees}
+              attendees={workshop.attendees && workshop.attendees > 0 ? workshop.attendees : 0}
           />
         ))}
       </div>
