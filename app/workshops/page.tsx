@@ -2,29 +2,42 @@ import Link from "next/link"
 import { ArrowLeft } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { WorkshopCard } from "@/components/workshop-card"
+import { WorkshopCardProps } from "@/components/workshop-card"
 
 //This page is using Server Side Rendering, which is rendered in the server befo
 export default async function WorkshopsPage() {
-  
+
   const URL = "http://127.0.0.1:8000/workshops";
   
   const data = await fetch(URL, {cache: "no-store"})
   if (!data) {
-    console.error("Failed to fetch workshops data!")
+    console.error("Failed to fetch workshops data!");
+    return <div className="p-6">Failed to fetch workshops data</div>
   }
-  const res = await data.json();
+    const workshopsFromAPI: (WorkshopCardProps & { date: string })[] = await data.json();
 
-  console.log(res);
+  // Convert date strings to Date objects
+  const workshops: WorkshopCardProps[] = workshopsFromAPI.map(workshop => ({
+    ...workshop,
+    date: new Date(workshop.date),
+  }));
+
+  console.log(workshops);
 
 
   return (
     <div className="p-6">
       <div className="grid gap-6 justify-center" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(20rem, 1fr))' }}>
-        <WorkshopCard title="Test" date="Test" image="./everyone.jpg" description="Test" />
-        <WorkshopCard title="Test" date="Test" image="Test" description="Test" />
-        <WorkshopCard title="Test" date="Test" image="Test" description="Test" />
-        <WorkshopCard title="Test" date="Test" image="Test" description="Test" />
-        {/* Map your real data here */}
+        {workshops && workshops.map((workshop) => (
+          <WorkshopCard 
+              key={workshop.id}
+              title={workshop.title}
+              date={workshop.date}
+              image="Not available"
+              description={workshop.description}
+              attendees={workshop.attendees}
+          />
+        ))}
       </div>
     </div>
   )

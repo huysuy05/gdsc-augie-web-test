@@ -7,9 +7,9 @@ import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 
-interface WorkshopCardProps {
+export interface WorkshopCardProps {
   title: string
-  date: string
+  date: Date
   image: string
   description: string
   // created_at : Date
@@ -36,7 +36,7 @@ export function WorkshopCard({ title, date, image, description,attendees }: Work
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent rounded-t-lg"></div>
         <div className="absolute bottom-3 left-3 flex items-center text-white text-sm">
           <Calendar className="h-4 w-4 mr-1" />
-          {date}
+          {date.toLocaleDateString()}
         </div>
       </div>
 
