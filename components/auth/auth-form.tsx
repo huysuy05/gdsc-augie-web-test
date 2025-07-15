@@ -12,18 +12,35 @@ import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { AlertCircle, Loader2 } from "lucide-react"
+import { useAuth } from "@/contexts/AuthContext"
+import { adminLogin } from "@/lib/auth"
+
 
 export function AuthForm() {
-  const [email, setEmail] = useState("")
+  const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
-  const [fullName, setFullName] = useState("")
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const router = useRouter()
+  const {login} = useAuth();
   // const supabase = createClientSupabase()
 
   const handleSignIn = async (e: React.FormEvent) => {
-    console.log("Signed in ")
+    e.preventDefault();
+    setLoading(true);
+    setError(null)
+
+    try {
+        const data = await adminLogin(username, password);
+        login(data.access_token);
+        alert("Log in successfully")
+        router.push("/");
+    } catch (e: any) {
+        console.error("Error in admin sign in:", e)
+        setError(e.message || "Failed to sign in");
+    } finally {
+        setLoading(false);
+    }
   }
 
   return (
@@ -46,11 +63,11 @@ export function AuthForm() {
                 <div className="space-y-2">
                   <Label htmlFor="email">Username</Label>
                   <Input
-                    id="email"
-                    type="email"
+                    id="username"
+                    type="username"
                     placeholder="Type in your admin username here"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
                     required
                   />
                 </div>
