@@ -1,3 +1,7 @@
+// This is a function to handle admin login. It will extract information (username, password) form the user input and send
+// it back to the backend server to authorize.
+// It will returns back a 
+
 export async function adminLogin(username: string, password: string) {
     const body = new URLSearchParams();
     body.append("username", username)
