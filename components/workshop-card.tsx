@@ -12,30 +12,28 @@ interface WorkshopCardProps {
   date: string
   image: string
   description: string
-  
+  // created_at : Date
   attendees?: number
 }
 
 export function WorkshopCard({ title, date, image, description,attendees }: WorkshopCardProps)  {
   const [isHovered, setIsHovered] = useState(false);
 
- 
-
-
   return (
     <Card
-      className="overflow-hidden card-hover"
+      className="w-80 max-w-sm mx-auto rounded-lg shadow-lg overflow-hidden card-hover transition-transform duration-300"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="relative h-48 w-full overflow-hidden">
+      <div className="relative h-48 w-full overflow-hidden rounded-t-lg">
         <Image
           src={image || "/everyone.jpg"}
           alt={title}
           fill
           className={`object-cover transition-transform duration-500 ${isHovered ? "scale-110" : "scale-100"}`}
+          style={{ borderTopLeftRadius: '0.5rem', borderTopRightRadius: '0.5rem' }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent rounded-t-lg"></div>
         <div className="absolute bottom-3 left-3 flex items-center text-white text-sm">
           <Calendar className="h-4 w-4 mr-1" />
           {date}

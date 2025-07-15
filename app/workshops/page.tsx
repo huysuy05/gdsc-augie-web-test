@@ -18,9 +18,14 @@ export default async function WorkshopsPage() {
 
 
   return (
-    <div>
-      <WorkshopCard title="Test" date="Test" image="./everyone.jpg" description="Test"  />
-      <WorkshopCard title="Test" date="Test" image="Test" description="Test" />
+    <div className="p-6">
+      <div className="grid gap-6 justify-center" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(20rem, 1fr))' }}>
+        <WorkshopCard title="Test" date="Test" image="./everyone.jpg" description="Test" />
+        <WorkshopCard title="Test" date="Test" image="Test" description="Test" />
+        <WorkshopCard title="Test" date="Test" image="Test" description="Test" />
+        <WorkshopCard title="Test" date="Test" image="Test" description="Test" />
+        {/* Map your real data here */}
+      </div>
     </div>
   )
 }
