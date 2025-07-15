@@ -19,5 +19,5 @@ def login(request: OAuth2PasswordRequestForm , db: Session):
     # Raise exception when the password is not correct
     if not hashing.Hash.verify(user.password, request.password):
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Wrong password")
-    access_token = JWT.create_access_token(data={"sub": user.username})
+    access_token = JWT.create_access_token(data={"sub": user.username, "role": "admin"})
     return {"access_token":access_token, "token_type": "bearer"}

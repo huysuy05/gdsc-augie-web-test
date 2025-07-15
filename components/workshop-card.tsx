@@ -13,7 +13,6 @@ export interface WorkshopCardProps {
   date: Date
   image: string
   description: string
-  // created_at : Date
   attendees?: number
 }
 
