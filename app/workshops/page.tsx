@@ -4,6 +4,17 @@ import { Button } from "@/components/ui/button"
 import { WorkshopCard } from "@/components/workshop-card"
 import { WorkshopCardProps } from "@/components/workshop-card"
 
+
+type WorkshopFromAPI = {
+  id: number
+  title: string
+  date: Date
+  image: string
+  description: string
+  // created_at : Date
+  attendees?: number
+}
+
 //This page is using Server Side Rendering, which is rendered in the server befo
 export default async function WorkshopsPage() {
 
@@ -14,10 +25,10 @@ export default async function WorkshopsPage() {
     console.error("Failed to fetch workshops data!");
     return <div className="p-6">Failed to fetch workshops data</div>
   }
-    const workshopsFromAPI: (WorkshopCardProps & { date: string })[] = await data.json();
+    const workshopsFromAPI: (WorkshopFromAPI & { date: string })[] = await data.json();
 
   // Convert date strings to Date objects
-  const workshops: WorkshopCardProps[] = workshopsFromAPI.map(workshop => ({
+  const workshops: WorkshopFromAPI[] = workshopsFromAPI.map(workshop => ({
     ...workshop,
     date: new Date(workshop.date),
   }));

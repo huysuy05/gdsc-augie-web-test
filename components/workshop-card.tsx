@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 
 export interface WorkshopCardProps {
+
   title: string
   date: Date
   image: string
