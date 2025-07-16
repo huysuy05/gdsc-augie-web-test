@@ -1,8 +1,9 @@
-import Link from "next/link"
 import { ArrowLeft } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { WorkshopCard } from "@/components/workshop-card"
-import { WorkshopCardProps } from "@/components/workshop-card"
+// import { useAuth } from "@/contexts/AuthContext"
+
+
 
 
 type WorkshopFromAPI = {
@@ -17,7 +18,7 @@ type WorkshopFromAPI = {
 
 //This page is using Server Side Rendering, which is rendered in the server befo
 export default async function WorkshopsPage() {
-
+  // const {isAdmin} = useAuth();
   const URL = "http://127.0.0.1:8000/workshops";
   
   const data = await fetch(URL, {cache: "no-store"})
@@ -46,7 +47,7 @@ export default async function WorkshopsPage() {
               date={workshop.date}
               image="Not available"
               description={workshop.description}
-              attendees={workshop.attendees && workshop.attendees > 0 ? workshop.attendees : 0}
+              attendees={workshop.attendees && workshop.attendees >= 0 ? workshop.attendees : 1}
           />
         ))}
       </div>

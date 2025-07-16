@@ -1,11 +1,12 @@
 "use client"
 
-import { useState } from "react"
+import { use, useState } from "react"
 import Image from "next/image"
 import { Calendar, ChevronRight } from "lucide-react"
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
+import { useAuth } from "@/contexts/AuthContext"
 
 export interface WorkshopCardProps {
 
@@ -18,6 +19,7 @@ export interface WorkshopCardProps {
 
 export function WorkshopCard({ title, date, image, description,attendees }: WorkshopCardProps)  {
   const [isHovered, setIsHovered] = useState(false);
+  const {isAdmin} = useAuth();
 
   return (
     <Card
@@ -47,7 +49,7 @@ export function WorkshopCard({ title, date, image, description,attendees }: Work
       <CardContent className="p-4 pt-0">
         <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">{description}</p>
         
-        {attendees && <p className="text-sm text-gray-500 mb-4">{attendees} attendees</p>}
+        {attendees && isAdmin === true && <p className="text-sm text-gray-500 mb-4">{attendees} attendees</p>}
         <div className="flex flex-wrap gap-2">
 
         </div>
