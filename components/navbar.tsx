@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, use } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { Menu, X } from "lucide-react"
@@ -8,10 +8,13 @@ import { Button } from "@/components/ui/button"
 import { ModeToggle } from "@/components/mode-toggle"
 // import { UserAuthForm } from "@/components/auth/user-auth-form"
 import { cn } from "@/lib/utils"
+import { useAuth } from "@/contexts/AuthContext"
+import { log } from "console"
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const {isAdmin, logout} =  useAuth()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,6 +24,12 @@ export function Navbar() {
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
+
+  const handleLogout = () => {
+    logout();
+    alert("You have successfully logged out!")
+  }
+  
 
   return (
     <header
@@ -56,6 +65,13 @@ export function Navbar() {
             <Link href="/contact" className="text-sm font-medium transition-colors hover:text-primary">
               Contact
             </Link>
+            {!isAdmin ? (
+              <Link href="/login" className="text-sm font-medium transition-colors hover:text-primary">
+              Admin Sign In 
+            </Link>
+            ): (
+              <Button onClick={handleLogout}>Sign Out</Button>
+            )}
           </nav>
 
           <div className="flex items-center space-x-2">

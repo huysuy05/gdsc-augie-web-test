@@ -22,7 +22,7 @@ export function AuthForm() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const router = useRouter()
-  const {login} = useAuth();
+  const {isAdmin, logout, login} = useAuth();
   // const supabase = createClientSupabase()
 
   const handleSignIn = async (e: React.FormEvent) => {
@@ -31,11 +31,17 @@ export function AuthForm() {
     setError(null)
 
     try {
+        if (!isAdmin) {
+          const data = await adminLogin(username, password);
+        
+          login(data.access_token);
+          alert("Log in successfully")
+          router.push("/");
+        } else {
+          logout();
+        }
         // call the adminLogin function with the passed username, password
-        const data = await adminLogin(username, password);
-        login(data.access_token);
-        alert("Log in successfully")
-        router.push("/");
+        
     } catch (e: any) {
         console.error("Error in admin sign in:", e)
         setError(e.message || "Failed to sign in");

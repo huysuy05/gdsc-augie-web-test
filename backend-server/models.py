@@ -14,7 +14,7 @@ class Workshops(Base):
     location = Column(String)
     
     attendees = relationship("Registration", back_populates="workshops")
-
+    
 
 
 class Student(Base):
