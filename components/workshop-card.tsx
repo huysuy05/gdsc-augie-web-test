@@ -49,7 +49,7 @@ export function WorkshopCard({ title, date, image, description,attendees }: Work
       <CardContent className="p-4 pt-0">
         <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">{description}</p>
         
-        {attendees && isAdmin === true && <p className="text-sm text-gray-500 mb-4">{attendees} attendees</p>}
+        {isAdmin === true && <p className="text-sm text-gray-500 mb-4">{attendees} {(attendees ?? 0) >= 2 ? "attendees" : "attendee"}</p>}
         <div className="flex flex-wrap gap-2">
 
         </div>

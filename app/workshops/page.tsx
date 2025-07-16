@@ -1,6 +1,7 @@
 import { ArrowLeft } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { WorkshopCard } from "@/components/workshop-card"
+import { list } from "postcss"
 // import { useAuth } from "@/contexts/AuthContext"
 
 
@@ -13,7 +14,7 @@ type WorkshopFromAPI = {
   image: string
   description: string
   // created_at : Date
-  attendees?: number
+  attendees?: Array<string>
 }
 
 //This page is using Server Side Rendering, which is rendered in the server befo
@@ -47,7 +48,7 @@ export default async function WorkshopsPage() {
               date={workshop.date}
               image="Not available"
               description={workshop.description}
-              attendees={workshop.attendees && workshop.attendees >= 0 ? workshop.attendees : 1}
+              attendees={workshop.attendees && workshop.attendees.length >= 0 ? workshop.attendees.length : 1}
           />
         ))}
       </div>
