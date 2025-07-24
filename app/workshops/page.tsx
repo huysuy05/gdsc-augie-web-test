@@ -1,7 +1,6 @@
-import { ArrowLeft } from "lucide-react"
-import { Button } from "@/components/ui/button"
+
 import { WorkshopCard } from "@/components/workshop-card"
-import { list } from "postcss"
+
 // import { useAuth } from "@/contexts/AuthContext"
 
 
@@ -10,7 +9,7 @@ import { list } from "postcss"
 type WorkshopFromAPI = {
   id: number
   title: string
-  date: Date
+  date: Date    
   image: string
   description: string
   // created_at : Date
