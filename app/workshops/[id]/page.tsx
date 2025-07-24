@@ -1,3 +1,7 @@
+
+// Defines an expected type that we want for the id attribute
+//It expects an object params which has an id attribute.
+// This is how NextJS passes URL route parameters for dynamic routes. 
 interface SingleWorkshopProps {
     params: {
         id: string;
