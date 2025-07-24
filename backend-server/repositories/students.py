@@ -3,7 +3,7 @@ import schemas, models
 from fastapi import HTTPException, status
 
 def studentSignUp(request: schemas.StudentsSignUp, db: Session):
-    new_student = models.Student(full_name=request.name, email=request.email)
+    new_student = models.Student(full_name=request.full_name, email=request.email)
     db.add(new_student)
     db.commit()
     db.refresh(new_student)

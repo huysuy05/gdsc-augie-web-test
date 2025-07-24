@@ -10,9 +10,22 @@ export function Cta({title, description, btn1, btn2}) {
     const [ showModal, setShowModal ] = useState(false);
 
 
-    const handleSignUpEmail = () => {
-        setShowModal(false);
-        alert("Email submited successfully, our team will talk to you soon!");
+    const handleSignUpEmail = async (e) => {   
+        e.preventDefault();     
+        const full_name = e.target.name.value;
+        const email = e.target.email.value;
+        const response = await fetch("/api/signup/", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ full_name, email }),
+        })  
+        if (!response.ok) {
+            alert("Failed to sign up, contact Hieu Nguyen at hieunguyen23@augustana.edu!")
+        } else {
+            setShowModal(false);
+            alert("Email submited successfully, our team will talk to you soon!");
+        }
+        
     }
 
     useEffect(() => {
@@ -51,11 +64,11 @@ export function Cta({title, description, btn1, btn2}) {
                             >
                                 <form className="flex flex-col gap-4 max-w-[400px] text-black" onSubmit={handleSignUpEmail}>
                                     <h3>Your Full Name: </h3>
-                                    <Input id="name" type="name" placeholder="Type your name here" required/>
+                                    <Input id="name" type="name" name="full_name" placeholder="Type your name here" required/>
                                     <h3>Enter your email here</h3>
-                                    <Input id="email" type="email" placeholder="your.email@augustana.edu" required />
+                                    <Input id="email" type="email" name="email" placeholder="your.email@augustana.edu" required />
                                     <div className="flex gap-4 mt-5">       
-                                        <Button variant="default" className="!bg-blue-700 text-white px-4 py-2 rounded !hover:bg-blue-500" >Submit</Button>
+                                        <Button variant="default" className="!bg-blue-700 text-white px-4 py-2 rounded !hover:bg-blue-500" type="submit" >Submit</Button>
                                         <Button
                                                 variant="destructive"
                                                 className="!bg-gray-500 !text-black px-4 py-2 rounded !hover:bg-gray-600"
