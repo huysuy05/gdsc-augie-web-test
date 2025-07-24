@@ -3,7 +3,7 @@ import Image from "next/image"
 import { ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useInView } from "react-intersection-observer"
-
+import Link from "next/link"
 export function HeroSection() {
   const { ref, inView } = useInView({
     triggerOnce: true,
@@ -40,13 +40,18 @@ export function HeroSection() {
             <div
               className={`flex flex-col sm:flex-row gap-4 ${inView ? "animate-fade-up animate-delay-200" : "opacity-0"}`}
             >
-              <Button size="lg" className="google-btn-hover bg-blue-600 hover:bg-blue-700">
-                Join Our Community
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-              <Button size="lg" variant="outline" className="google-btn-hover">
+              <Link href="/contact">
+                  <Button className="bg-blue-600 hover:bg-blue-700">
+                  Join Our Community
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </Link>
+              <Link href="/workshops">
+                <Button size="lg" variant="outline" className="google-btn-hover">
                 Explore Workshops
               </Button>
+              </Link>
+              
             </div>
 
             <div

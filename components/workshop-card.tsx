@@ -1,15 +1,15 @@
 "use client"
 
-import { use, useState } from "react"
+import { useState } from "react"
 import Image from "next/image"
 import { Calendar, ChevronRight } from "lucide-react"
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { useAuth } from "@/contexts/AuthContext"
+import Link from "next/link"
 
 export interface WorkshopCardProps {
-
+  id: number
   title: string
   date: Date
   image: string
@@ -17,7 +17,7 @@ export interface WorkshopCardProps {
   attendees?: number
 }
 
-export function WorkshopCard({ title, date, image, description,attendees }: WorkshopCardProps)  {
+export function WorkshopCard({ title, date, image, description,attendees, id }: WorkshopCardProps)  {
   const [isHovered, setIsHovered] = useState(false);
   const {isAdmin} = useAuth();
 
@@ -55,12 +55,16 @@ export function WorkshopCard({ title, date, image, description,attendees }: Work
         </div>
       </CardContent>
 
-      <CardFooter className="p-4 pt-0">
+      <Link href={`/workshops/${id}`}>
+          <CardFooter className="p-4 pt-0">
         <Button variant="ghost" className="p-0 h-auto text-blue-600 dark:text-blue-500 group">
           View Workshop
           <ChevronRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
         </Button>
       </CardFooter>
+
+      </Link>
+      
     </Card>
   )
 }

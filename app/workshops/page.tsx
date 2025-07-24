@@ -43,6 +43,7 @@ export default async function WorkshopsPage() {
         {workshops && workshops.map((workshop) => (
           <WorkshopCard 
               key={workshop.id}
+              id={workshop.id}
               title={workshop.title}
               date={workshop.date}
               image="Not available"

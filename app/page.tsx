@@ -1,11 +1,10 @@
 import Image from "next/image"
 import { ArrowRight, Users } from "lucide-react"
-
+import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { WorkshopCard } from "@/components/workshop-card"
+
 import { HeroSection } from "@/components/hero-section"
-import { TeamSection } from "@/components/team-section"
-import { UpcomingEvents } from "@/components/upcoming-events"
+
 import { Cta } from "./cta"
 
 // import { getWorkshops, getUpcomingEvents } from "@/lib/database"
@@ -35,10 +34,13 @@ export default async function Home() {
                 where developers can network, learn, and grow together.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button className="bg-blue-600 hover:bg-blue-700">
+                <Link href="/contact">
+                  <Button className="bg-blue-600 hover:bg-blue-700">
                   Join Our Community
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
+                </Link>
+                
                 <Button variant="outline">Learn More</Button>
               </div>
             </div>
