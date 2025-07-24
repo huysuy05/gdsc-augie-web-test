@@ -49,13 +49,13 @@ export function Cta({title, description, btn1, btn2}) {
                                 onClick={(e) => e.stopPropagation()}
                                 className="bg-white p-4 "
                             >
-                                <div className="flex flex-col gap-4 max-w-[400px] text-black">
+                                <form className="flex flex-col gap-4 max-w-[400px] text-black" onSubmit={handleSignUpEmail}>
                                     <h3>Your Full Name: </h3>
-                                    <Input id="name" type="name" placeholder="Type your name here" />
+                                    <Input id="name" type="name" placeholder="Type your name here" required/>
                                     <h3>Enter your email here</h3>
-                                    <Input id="email" type="email" placeholder="your.email@augustana.edu" />
-                                    <div className="flex gap-4 mt-5">
-                                        <Button variant="default" className="!bg-blue-700 text-white px-4 py-2 rounded !hover:bg-blue-500" onClick={handleSignUpEmail}>Submit</Button>
+                                    <Input id="email" type="email" placeholder="your.email@augustana.edu" required />
+                                    <div className="flex gap-4 mt-5">       
+                                        <Button variant="default" className="!bg-blue-700 text-white px-4 py-2 rounded !hover:bg-blue-500" >Submit</Button>
                                         <Button
                                                 variant="destructive"
                                                 className="!bg-gray-500 !text-black px-4 py-2 rounded !hover:bg-gray-600"
@@ -64,7 +64,7 @@ export function Cta({title, description, btn1, btn2}) {
                                         Cancel
                                         </Button>
                                     </div>
-                                </div>
+                                </form>
                             </div>
                         </div>
                     )}
