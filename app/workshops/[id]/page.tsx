@@ -15,13 +15,14 @@ export default async function ViewWorkshop ({params}: SingleWorkshopProps){
     if (!res) {
         console.error("Cannot fetch a single workshop")
     }
-    const data = await res.json()
+    const data = await res.json();
+    const new_data = await {...data, date: new Date(data.date)};
     
     return (
-        <div className="flex justify-center items-center">
-            <h1>{data.title}</h1>
-            <h2>{data.description}</h2>
-            <h2>{data.date}</h2>
+        <div className="flex flex-col justify-center items-center">
+            <h1>{new_data.title}</h1>
+            <h2>{new_data.description}</h2>
+            <h2>{new_data.date.toDateString()}</h2>
         </div>
     )
 }   
