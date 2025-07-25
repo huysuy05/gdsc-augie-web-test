@@ -16,7 +16,7 @@ export interface WorkshopCardProps {
   image: string
   description: string
   attendees?: number
-}
+} 
 
 export function WorkshopCard({ title, date, image, description,attendees, id }: WorkshopCardProps)  {
   const [isHovered, setIsHovered] = useState(false);

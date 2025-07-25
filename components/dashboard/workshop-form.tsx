@@ -4,7 +4,6 @@ import type React from "react"
 
 import { useState } from "react"
 import { useRouter } from "next/navigation"
-import { createClientSupabase } from "@/lib/auth"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -23,22 +22,21 @@ interface WorkshopFormProps {
 
 export function WorkshopForm({ workshop }: WorkshopFormProps) {
   const router = useRouter()
-  const supabase = createClientSupabase()
   const [loading, setLoading] = useState(false)
   const [date, setDate] = useState<Date | undefined>(workshop ? new Date(workshop.date) : undefined)
-  const [tag, setTag] = useState("")
+  // const [tag, setTag] = useState("")
 
   const [formData, setFormData] = useState({
     title: workshop?.title || "",
     description: workshop?.description || "",
-    time: workshop?.time || "",
-    location: workshop?.location || "",
-    image_url: workshop?.image_url || "/placeholder.svg?height=200&width=300",
-    tags: workshop?.tags || [],
-    resources_url: workshop?.resources_url || "",
-    recording_url: workshop?.recording_url || "",
-    presenter: workshop?.presenter || "",
-    attendees_count: workshop?.attendees_count || 0,
+    date: workshop?.date || "",
+    // location: workshop?.location || "",
+    // image_url: workshop?.image_url || "/placeholder.svg?height=200&width=300",
+    // tags: workshop?.tags || [],
+    // resources_url: workshop?.resources_url || "",
+    // recording_url: workshop?.recording_url || "",
+    // presenter: workshop?.presenter || "",
+    attendees_count: workshop?.attendees || 0,
   })
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -51,22 +49,9 @@ export function WorkshopForm({ workshop }: WorkshopFormProps) {
     setFormData((prev) => ({ ...prev, [name]: Number.parseInt(value) || 0 }))
   }
 
-  const addTag = () => {
-    if (tag.trim() && !formData.tags.includes(tag.trim())) {
-      setFormData((prev) => ({
-        ...prev,
-        tags: [...prev.tags, tag.trim()],
-      }))
-      setTag("")
-    }
-  }
 
-  const removeTag = (tagToRemove: string) => {
-    setFormData((prev) => ({
-      ...prev,
-      tags: prev.tags.filter((t) => t !== tagToRemove),
-    }))
-  }
+
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -77,30 +62,9 @@ export function WorkshopForm({ workshop }: WorkshopFormProps) {
     }
 
     setLoading(true)
-
-    try {
-      const workshopData = {
-        ...formData,
-        date: format(date, "yyyy-MM-dd"),
-      }
-
-      if (workshop) {
-        // Update existing workshop
-        await supabase.from("workshops").update(workshopData).eq("id", workshop.id)
-      } else {
-        // Create new workshop
-        await supabase.from("workshops").insert([workshopData])
-      }
-
-      router.push("/dashboard/workshops")
-      router.refresh()
-    } catch (error) {
-      console.error("Error saving workshop:", error)
-      alert("Failed to save workshop")
-    } finally {
-      setLoading(false)
-    }
   }
+
+    
 
   return (
     <form onSubmit={handleSubmit} className="space-y-8">
@@ -110,10 +74,10 @@ export function WorkshopForm({ workshop }: WorkshopFormProps) {
           <Input id="title" name="title" value={formData.title} onChange={handleChange} required />
         </div>
 
-        <div className="space-y-2">
+        {/* <div className="space-y-2">
           <Label htmlFor="presenter">Presenter</Label>
           <Input id="presenter" name="presenter" value={formData.presenter} onChange={handleChange} required />
-        </div>
+        </div> */}
 
         <div className="space-y-2">
           <Label>Date</Label>
@@ -133,7 +97,7 @@ export function WorkshopForm({ workshop }: WorkshopFormProps) {
           </Popover>
         </div>
 
-        <div className="space-y-2">
+        {/* <div className="space-y-2">
           <Label htmlFor="time">Time</Label>
           <Input
             id="time"
@@ -143,14 +107,14 @@ export function WorkshopForm({ workshop }: WorkshopFormProps) {
             placeholder="e.g. 4:00 PM - 6:00 PM"
             required
           />
-        </div>
+        </div> */}
 
-        <div className="space-y-2">
+        {/* <div className="space-y-2">
           <Label htmlFor="location">Location</Label>
           <Input id="location" name="location" value={formData.location} onChange={handleChange} required />
-        </div>
+        </div> */}
 
-        <div className="space-y-2">
+        {/* <div className="space-y-2">
           <Label htmlFor="image_url">Image URL</Label>
           <Input id="image_url" name="image_url" value={formData.image_url} onChange={handleChange} />
         </div>
@@ -163,7 +127,7 @@ export function WorkshopForm({ workshop }: WorkshopFormProps) {
         <div className="space-y-2">
           <Label htmlFor="recording_url">Recording URL</Label>
           <Input id="recording_url" name="recording_url" value={formData.recording_url} onChange={handleChange} />
-        </div>
+        </div> */}
 
         <div className="space-y-2">
           <Label htmlFor="attendees_count">Attendees Count</Label>
@@ -176,34 +140,7 @@ export function WorkshopForm({ workshop }: WorkshopFormProps) {
           />
         </div>
 
-        <div className="space-y-2 md:col-span-2">
-          <Label htmlFor="tags">Tags</Label>
-          <div className="flex space-x-2">
-            <Input
-              id="tags"
-              value={tag}
-              onChange={(e) => setTag(e.target.value)}
-              placeholder="Add a tag and press Enter"
-              onKeyDown={(e) => {
-                if (e.key === "Enter") {
-                  e.preventDefault()
-                  addTag()
-                }
-              }}
-            />
-            <Button type="button" onClick={addTag}>
-              Add
-            </Button>
-          </div>
-          <div className="flex flex-wrap gap-2 mt-2">
-            {formData.tags.map((t, i) => (
-              <Badge key={i} variant="secondary" className="flex items-center gap-1">
-                {t}
-                <X className="h-3 w-3 cursor-pointer" onClick={() => removeTag(t)} />
-              </Badge>
-            ))}
-          </div>
-        </div>
+        
       </div>
 
       <div className="space-y-2">
@@ -230,3 +167,4 @@ export function WorkshopForm({ workshop }: WorkshopFormProps) {
     </form>
   )
 }
+

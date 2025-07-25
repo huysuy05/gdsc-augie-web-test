@@ -9,7 +9,7 @@ export interface User {
 
 export interface Workshop {
   id: number
-  title: string
+  title: string   
   date: Date    
   image: string
   description: string
