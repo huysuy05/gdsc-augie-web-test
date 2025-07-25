@@ -1,6 +1,6 @@
 import type React from "react"
 import { redirect } from "next/navigation"
-import { isExecOrAdmin } from "@/lib/auth"
+// import { isExecOrAdmin } from "@/lib/auth"
 import { DashboardNav } from "@/components/dashboard/dashboard-nav"
 
 export default async function DashboardLayout({
@@ -8,11 +8,11 @@ export default async function DashboardLayout({
 }: {
   children: React.ReactNode
 }) {
-  const isAuthorized = await isExecOrAdmin()
+  // const isAuthorized = await isExecOrAdmin()
 
-  if (!isAuthorized) {
-    redirect("/auth")
-  }
+  // if (!isAuthorized) {
+  //   redirect("/auth")
+  // }
 
   return (
     <div className="flex min-h-screen flex-col">

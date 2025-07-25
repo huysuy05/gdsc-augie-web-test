@@ -13,7 +13,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { createClientSupabase } from "@/lib/auth"
+// import { createClientSupabase } from "@/lib/auth"
 import type { Workshop } from "@/lib/types"
 import { Edit, MoreHorizontal, Trash } from "lucide-react"
 import { format } from "date-fns"
@@ -26,7 +26,7 @@ interface WorkshopsTableProps {
 export function WorkshopsTable({ workshops }: WorkshopsTableProps) {
   const [selectedWorkshops, setSelectedWorkshops] = useState<number[]>([])
   const router = useRouter()
-  const supabase = createClientSupabase()
+  // const supabase = createClientSupabase()
 
   const toggleWorkshop = (id: number) => {
     setSelectedWorkshops((prev) => (prev.includes(id) ? prev.filter((workshopId) => workshopId !== id) : [...prev, id]))
@@ -41,10 +41,10 @@ export function WorkshopsTable({ workshops }: WorkshopsTableProps) {
   }
 
   const handleDelete = async (id: number) => {
-    if (confirm("Are you sure you want to delete this workshop?")) {
-      await supabase.from("workshops").delete().eq("id", id)
-      router.refresh()
-    }
+    // if (confirm("Are you sure you want to delete this workshop?")) {
+    //   await supabase.from("workshops").delete().eq("id", id)
+    //   router.refresh()
+    // }
   }
 
   return (
@@ -86,7 +86,7 @@ export function WorkshopsTable({ workshops }: WorkshopsTableProps) {
                 </TableCell>
                 <TableCell className="font-medium">{workshop.title}</TableCell>
                 <TableCell>{format(new Date(workshop.date), "MMM d, yyyy")}</TableCell>
-                <TableCell>{workshop.presenter}</TableCell>
+                {/* <TableCell>{workshop.presenter}</TableCell>
                 <TableCell>{workshop.attendees_count}</TableCell>
                 <TableCell>
                   <div className="flex flex-wrap gap-1">
@@ -101,7 +101,7 @@ export function WorkshopsTable({ workshops }: WorkshopsTableProps) {
                       </Badge>
                     )}
                   </div>
-                </TableCell>
+                </TableCell> */}
                 <TableCell>
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>

@@ -1,24 +1,12 @@
 
 import { WorkshopCard } from "@/components/workshop-card"
-
-// import { useAuth } from "@/contexts/AuthContext"
-
-
+import { WorkshopsTable } from "@/components/dashboard/workshops-table";
+import type { Workshop } from "@/lib/types"
 
 
-type WorkshopFromAPI = {
-  id: number
-  title: string
-  date: Date    
-  image: string
-  description: string
-  // created_at : Date
-  attendees?: Array<string>
-}
 
 //This page is using Server Side Rendering, which is rendered in the server befo
 export default async function WorkshopsPage() {
-  // const {isAdmin} = useAuth();
   const URL = "http://127.0.0.1:8000/workshops";
   
   const data = await fetch(URL, {cache: "no-store"})
@@ -26,10 +14,10 @@ export default async function WorkshopsPage() {
     console.error("Failed to fetch workshops data!");
     return <div className="p-6">Failed to fetch workshops data</div>
   }
-    const workshopsFromAPI: (WorkshopFromAPI & { date: string })[] = await data.json();
+    const workshopsFromAPI: (Workshop & { date: string })[] = await data.json();
 
   // Convert date strings to Date objects
-  const workshops: WorkshopFromAPI[] = workshopsFromAPI.map(workshop => ({
+  const workshops: Workshop[] = workshopsFromAPI.map(workshop => ({
     ...workshop,
     date: new Date(workshop.date),
   }));
@@ -51,6 +39,7 @@ export default async function WorkshopsPage() {
               attendees={workshop.attendees && workshop.attendees.length >= 0 ? workshop.attendees.length : 1}
           />
         ))}
+        {/* <WorkshopsTable workshops={workshops}/> */}
       </div>
     </div>
   )

@@ -7,6 +7,7 @@ import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { useAuth } from "@/contexts/AuthContext"
 import Link from "next/link"
+import type { Workshop } from "@/lib/types"
 
 export interface WorkshopCardProps {
   id: number
@@ -58,7 +59,7 @@ export function WorkshopCard({ title, date, image, description,attendees, id }: 
       <Link href={`/workshops/${id}`}>
           <CardFooter className="p-4 pt-0">
         <Button variant="ghost" className="p-0 h-auto text-blue-600 dark:text-blue-500 group">
-          View Workshop
+          Register for workshop here
           <ChevronRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
         </Button>
       </CardFooter>

@@ -10,18 +10,11 @@ export interface User {
 export interface Workshop {
   id: number
   title: string
+  date: Date    
+  image: string
   description: string
-  date: string
-  time: string
-  location: string
-  image_url: string
-  tags: string[]
-  resources_url?: string
-  recording_url?: string
-  presenter: string
-  attendees_count: number
-  created_at: string
-  updated_at: string
+  // created_at : Date
+  attendees?: Array<string> 
 }
 
 export interface Event {
