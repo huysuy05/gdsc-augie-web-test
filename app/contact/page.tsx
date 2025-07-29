@@ -6,11 +6,14 @@ import { Mail, MapPin, Phone } from "lucide-react"
 import { useInView } from "react-intersection-observer"
 import { handleSignUp } from "@/lib/functions"
 import { useRouter } from "next/navigation"
+import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert"
+
 
 export default function ContactPage() {
 // Add contact form
   const [form, setForm] = useState({name: '', email: ''})
   const [status, setStatus] = useState("")
+  const [error, setError] = useState<string | null>(null)
   const router = useRouter();
 
   const { ref: heroRef, inView: heroInView } = useInView({
@@ -39,13 +42,16 @@ export default function ContactPage() {
   const handleMaiSend = async (e: React.FormEvent) => {
       e.preventDefault()
       
-      const response = await handleSignUp(e);
+      const response = await handleSignUp(e, "signup");
       if (!response.ok) {
-            alert("Failed to sign up, contact Hieu Nguyen at hieunguyen23@augustana.edu!")
+            setError("Failed to sign up! Contact GDG Admin for Support!")
+            setTimeout(() => setError(null), 5000)
         } else {
             setStatus("Sending...")
-            alert("Email submited successfully, our team will talk to you soon!");
-            router.push("/")
+            setTimeout(() => {
+              alert("Sign up successfull! You will be notified when GDG has a workshop")
+              router.push("/")
+            }, 1000)
       }
 
 
@@ -79,8 +85,15 @@ export default function ContactPage() {
 
 
   return (
+    
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
+      {error && (
+      <Alert variant="destructive">
+              <AlertTitle>Error</AlertTitle>
+              <AlertDescription>{error}</AlertDescription>
+            </Alert>
+      )}
       <section className="py-20 px-4 md:px-6 lg:px-8 bg-gradient-to-br from-blue-50 to-indigo-100">
         <div ref={heroRef} className="container mx-auto max-w-6xl text-center">
           <h1 className={`text-4xl md:text-6xl font-bold mb-6 ${heroInView ? "animate-fade-up" : "opacity-0"}`}>
@@ -137,7 +150,7 @@ export default function ContactPage() {
                 {status && <p className="text-center mt-2">{status}</p>}
               </form>
             </div>
-
+            
             {/* Contact Information */}
             <div ref={infoRef} className={`space-y-8 ${infoInView ? "animate-fade-up" : "opacity-0"}`}>
               <div>

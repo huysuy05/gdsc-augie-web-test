@@ -12,20 +12,18 @@ interface SingleWorkshopProps {
 
 export default async function ViewWorkshop ({params}: SingleWorkshopProps){
     const { id } =  params;
-    const URL = "http://127.0.0.1:8000/workshops/" + id;
-    const res = await fetch(URL)
-    if (!res) {
-        console.error("Cannot fetch a single workshop")
-    }
-    const data: (Workshop & { date: string} ) = await res.json();
-    const new_data: Workshop = await {...data, date: new Date(data.date)};
+    // const URL = "http://127.0.0.1:8000/workshops/" + id;
+    // const res = await fetch(URL)
+    // if (!res) {
+    //     console.error("Cannot fetch a single workshop")
+    // }
+    // const data: (Workshop & { date: string} ) = await res.json();
+    // const new_data: Workshop = await {...data, date: new Date(data.date)};
+
     
     return (
         <div className="flex flex-col justify-center items-center">
-            <h1>{new_data.title}</h1>
-            <h2>{new_data.description}</h2>
-            <h2>{new_data.date.toDateString()}</h2>
-            {/* <WorkshopForm workshop={new_data}/> */}
+            
         </div>
     )
 }   
