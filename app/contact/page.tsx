@@ -100,7 +100,7 @@ export default function ContactPage() {
             Get in <span className="text-blue-600">Touch</span>
           </h1>
           <p className={`text-xl text-gray-600 max-w-3xl mx-auto ${heroInView ? "animate-fade-up animate-delay-100" : "opacity-0"}`}>
-            Have questions about our events or want to collaborate? We'd love to hear from you.
+            Have questions about our events or want to sign up to never miss any GDG's Workshops? We'd love to hear from you.
           </p>
         </div>
         {/* Contact Form and Info */}
