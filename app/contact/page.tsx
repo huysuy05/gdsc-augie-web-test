@@ -2,15 +2,16 @@
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
 import { Mail, MapPin, Phone } from "lucide-react"
 import { useInView } from "react-intersection-observer"
-import Link from "next/link";
+import { handleSignUp } from "@/lib/functions"
+import { useRouter } from "next/navigation"
 
 export default function ContactPage() {
 // Add contact form
-  const [form, setForm] = useState({name: '', email: '', message: ''})
+  const [form, setForm] = useState({name: '', email: ''})
   const [status, setStatus] = useState("")
+  const router = useRouter();
 
   const { ref: heroRef, inView: heroInView } = useInView({
     triggerOnce: true,
@@ -19,6 +20,7 @@ export default function ContactPage() {
 
   const { ref: formRef, inView: formInView } = useInView({
     triggerOnce: true,
+    
     threshold: 0.1,
   })
 
@@ -36,30 +38,39 @@ export default function ContactPage() {
   // HANDLE FORM SUBMISSION
   const handleMaiSend = async (e: React.FormEvent) => {
       e.preventDefault()
-      setStatus("Sending...")
-
-
-      try {
-        const res = await fetch("http://localhost:8000/send-mail/", {
-          method: "POST",
-          headers: {"Content-Type": "application/json"},
-          body: JSON.stringify({
-            subject: `Contact from ${form.name} (${form.email})`,
-          body: form.message,
-          }),
-        })
-
-         if (res.ok){
-          setStatus("Message Sent! Thanks for contacting us")
-          setForm({ name: "", email: "", message: "" })
-         }
-         else {
-          setStatus("Failed to send message. Don't worry this is on us.")
-         }
+      
+      const response = await handleSignUp(e);
+      if (!response.ok) {
+            alert("Failed to sign up, contact Hieu Nguyen at hieunguyen23@augustana.edu!")
+        } else {
+            setStatus("Sending...")
+            alert("Email submited successfully, our team will talk to you soon!");
+            router.push("/")
       }
-      catch (err) {
-        setStatus("Failed to send message. Don't worry this is on us.")
-      }
+
+
+
+      // try {
+      //   const res = await fetch("http://localhost:8000/send-mail/", {
+      //     method: "POST",
+      //     headers: {"Content-Type": "application/json"},
+      //     body: JSON.stringify({
+      //       subject: `Contact from ${form.name} (${form.email})`,
+      //     body: form.message,
+      //     }),
+      //   })
+
+      //    if (res.ok){
+      //     setStatus("Message Sent! Thanks for contacting us")
+      //     setForm({ name: "", email: "", message: "" })
+      //    }
+      //    else {
+      //     setStatus("Failed to send message. Don't worry this is on us.")
+      //    }
+      // }
+      // catch (err) {
+      //   setStatus("Failed to send message. Don't worry this is on us.")
+      // }
   }
 
   
@@ -108,7 +119,7 @@ export default function ContactPage() {
                           onChange={handleMailChange}
                           required />
                 </div>
-                <div className="space-y-2">
+                {/* <div className="space-y-2">
                   <label htmlFor="message" className="text-sm font-medium">
                     Message
                   </label>
@@ -121,8 +132,8 @@ export default function ContactPage() {
                     onChange={handleMailChange}
                     required
                   />
-                </div>
-                <Button className="w-full">Send Message</Button>
+                </div> */}
+                <Button className="w-full">Sign up </Button>
                 {status && <p className="text-center mt-2">{status}</p>}
               </form>
             </div>

@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input"
 import Link from "next/link";
+import { handleSignUp } from "@/lib/functions";
 
 
 
@@ -11,14 +12,8 @@ export function Cta({title, description, btn1, btn2}) {
 
 
     const handleSignUpEmail = async (e) => {   
-        e.preventDefault();     
-        const full_name = e.target.name.value;
-        const email = e.target.email.value;
-        const response = await fetch("/api/signup/", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ full_name, email }),
-        })  
+ 
+        const response = await handleSignUp(e);
         if (!response.ok) {
             alert("Failed to sign up, contact Hieu Nguyen at hieunguyen23@augustana.edu!")
         } else {
@@ -40,7 +35,7 @@ export function Cta({title, description, btn1, btn2}) {
         }
     }, [showModal])
 
-    return (
+    return (    
         <section className="py-16 px-4 md:px-6 lg:px-8 bg-blue-600 text-black">
             <div className="container mx-auto max-w-6xl text-center">
                 <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">{title}</h2>
