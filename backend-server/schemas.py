@@ -22,7 +22,7 @@ class Workshops(WorkShopsBase):
 class RegisStudentOut(BaseModel):
     name: str
     email: str
-    registered_on: datetime
+    workshops_id: int
     class Config():
         from_attributes = True
     

@@ -6,7 +6,7 @@ import os
 from dotenv import load_dotenv
 import models
 from database import engine
-from routes import workshops, admin, students
+from routes import workshops, admin, students, register
 from fastapi.middleware.cors import CORSMiddleware
 load_dotenv()
 
@@ -18,6 +18,7 @@ models.Base.metadata.create_all(bind=engine)
 app.include_router(workshops.router)
 app.include_router(admin.router)
 app.include_router(students.router)
+app.include_router(register.router)
 
 
 origins = [
