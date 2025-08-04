@@ -61,8 +61,8 @@ export function WorkshopCard({ title, date, image, description,attendees, id, lo
 
       <Link href={`/workshops/${id}`}>
           <CardFooter className="p-4 pt-0">
-        <Button variant="ghost" className="p-0 h-auto text-blue-600 dark:text-blue-500 group">
-          Register for workshop here
+        <Button variant="ghost" className="p-0 h-auto text-blue-600 dark:text-blue-500 font-bold group">
+          RSVP Here
           <ChevronRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
         </Button>
       </CardFooter>
