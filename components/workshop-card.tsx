@@ -49,7 +49,7 @@ export function WorkshopCard({ title, date, image, description,attendees, id, lo
       </CardHeader>
 
       <CardContent className="p-4 pt-0">
-        <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">Locate at: <span className="text-red-500 font-bold">{location}</span></p>
+        <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">Locate at: <span className="text-red-500 ">{location}</span></p>
         <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">{description}</p>
         
         
