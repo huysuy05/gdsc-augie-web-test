@@ -16,9 +16,10 @@ export interface WorkshopCardProps {
   image: string
   description: string
   attendees?: number
+  location: string
 } 
 
-export function WorkshopCard({ title, date, image, description,attendees, id }: WorkshopCardProps)  {
+export function WorkshopCard({ title, date, image, description,attendees, id, location }: WorkshopCardProps)  {
   const [isHovered, setIsHovered] = useState(false);
   const {isAdmin} = useAuth();
 
@@ -48,7 +49,9 @@ export function WorkshopCard({ title, date, image, description,attendees, id }: 
       </CardHeader>
 
       <CardContent className="p-4 pt-0">
+        <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">Locate at: <span className="text-red-500 font-bold">{location}</span></p>
         <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">{description}</p>
+        
         
         {isAdmin === true && <p className="text-sm text-gray-500 mb-4">{attendees} {(attendees ?? 0) >= 2 ? "attendees" : "attendee"}</p>}
         <div className="flex flex-wrap gap-2">

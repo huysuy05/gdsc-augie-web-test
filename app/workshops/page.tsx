@@ -1,6 +1,6 @@
 
 import { WorkshopCard } from "@/components/workshop-card"
-import { WorkshopsTable } from "@/components/dashboard/workshops-table";
+// import { WorkshopsTable } from "@/components/dashboard/workshops-table";
 import type { Workshop } from "@/lib/types"
 
 
@@ -37,6 +37,8 @@ export default async function WorkshopsPage() {
               image="Not available"
               description={workshop.description}
               attendees={workshop.attendees && workshop.attendees.length >= 0 ? workshop.attendees.length : 1}
+              location={workshop.location}
+
           />
         ))}
         {/* <WorkshopsTable workshops={workshops}/> */}

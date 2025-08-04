@@ -1,5 +1,4 @@
 import schemas, models
-from fastapi import HTTPException, status
 from sqlalchemy.orm import Session
 from datetime import datetime
 
@@ -7,7 +6,7 @@ def register_workshop(request: schemas.RegisStudentOut, db: Session):
     new_student = models.Registration(name=request.name,
                                       email=request.email,
                                       registered_on=datetime.now(),
-                                      workshops_id=2
+                                      workshops_id=request.workshops_id
                                       )
     db.add(new_student)
     db.commit()

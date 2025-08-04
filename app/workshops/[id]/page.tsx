@@ -1,7 +1,7 @@
 "use client"
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { handleSignUp } from "@/lib/functions";
+import { handleRegister } from "@/lib/functions";
 import { useInView } from "react-intersection-observer";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Input } from "@/components/ui/input";
@@ -9,15 +9,15 @@ import { Button } from "@/components/ui/button";
 // Defines an expected type that we want for the id attribute
 //It expects an object params which has an id attribute.
 // This is how NextJS passes URL route parameters for dynamic routes. 
-// interface SingleWorkshopProps {
-//     params: {
-//         id: string;
-//     };
+interface SingleWorkshopProps {
+    params: {
+        id: string;
+    };
 
-// }
+}
 
-export default function ViewWorkshop (){
-    // const { id } =  await params;
+export default function ViewWorkshop ({ params }: SingleWorkshopProps){
+    const { id } = params;
     // const URL = "http://127.0.0.1:8000/workshops/" + id;
     // const res = await fetch(URL)
     // if (!res) {
@@ -46,11 +46,17 @@ export default function ViewWorkshop (){
 
     const handleSubmit  = async (e: React.FormEvent) => {
         e.preventDefault();
-        const response = await handleSignUp(e, "register");
+        // const data = {...form, workshop_id: id}
+        const response = await handleRegister(e, "register", id);
         if (!response) {
+            // alert("register failed")
             setError("Failed to register, contact GDG admin for support");
             setTimeout(() => setError(null), 5000)
+        } else {
+            alert("Register successfully!!")
+            router.push("/workshops")
         }
+
     }
 
     
@@ -79,7 +85,7 @@ export default function ViewWorkshop (){
                             <h2 className="text-2xl font-bold  ">Register here</h2>
                             <div className="space-y-2">
                                 <label className="text-md font-bold">Your Full Name:</label>
-                                <Input type="name" name="name" placeholder="Enter your full name here" required></Input>
+                                <Input type="name" name="name" placeholder="Enter your full name here" onChange={handleFormChange} required></Input>
                             </div>
                             
                             <div className="space-y-2">

@@ -14,5 +14,5 @@ export async function POST(req) {
         return new Response(JSON.stringify({message: "Signup Failed, contact admin!"}), {status: 500})
     }
     console.log(body);
-    return new Response(JSON.stringify({message: "Signup Failed, contact admin!"}), {status: 200})
+    return new Response(JSON.stringify({message: "Signup Successfully!"}), {status: 200})
 }   

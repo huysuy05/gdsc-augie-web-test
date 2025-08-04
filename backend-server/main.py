@@ -39,16 +39,5 @@ app.add_middleware(
 def test_api():
     return "This is the root url for the backend server, hit /docs to see more about the endpoints"
 
-# @app.post("/send-email/")
-# async def send_email(request: Request):
-#     data = await request.json()
-#     subject = data.get("subject", "No Subject")
-#     body = data.get("body", "")
-#     to_email = os.getenv("EMAIL_USER")  
-#     emails.send_email(subject, body, to_email)
-#     return {"message": "Email sent successfully"}
 
-
-# if __name__ == "__main__":
-#     uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
 

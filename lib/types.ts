@@ -13,6 +13,7 @@ export interface Workshop {
   date: Date    
   image: string
   description: string
+  location: string
   // created_at : Date
   attendees?: Array<string> 
 }
