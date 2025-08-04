@@ -86,44 +86,41 @@ export function Footer() {
             <ul className="space-y-2">
               <li>
                 <Link
-                  href="#"
+                  href="https://gdg.community.dev/"
                   className="text-sm text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-500"
+                  target="_blank_"
                 >
                   Google Developers
                 </Link>
               </li>
               <li>
                 <Link
-                  href="#"
+                  href="https://firebase.google.com/docs"
                   className="text-sm text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-500"
+                  target="_blank_"
                 >
                   Firebase
                 </Link>
               </li>
               <li>
                 <Link
-                  href="#"
+                  href="https://www.tensorflow.org/learn"
                   className="text-sm text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-500"
+                  target="_blank_"
                 >
                   TensorFlow
                 </Link>
               </li>
               <li>
                 <Link
-                  href="#"
+                  href="https://flutter.dev/"
                   className="text-sm text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-500"
+                  target="_blank_"
                 >
                   Flutter
                 </Link>
               </li>
-              <li>
-                <Link
-                  href="#"
-                  className="text-sm text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-500"
-                >
-                  Android Developers
-                </Link>
-              </li>
+              
             </ul>
           </div>
 

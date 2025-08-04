@@ -61,7 +61,7 @@ export default function TeamPage() {
       name: "Tram Nguyen",
       role: "Public Chair Relation",
       image: "/Tram.jpeg",
-      bio: "Focused on building an inclusive tech community and organizing engaging events for all skill levels.",
+      bio: "Building partnerships, and connecting sponsors, developers, and local organizations to grow the GDG ecosystem. 🚀",
       year: "Sophomore",
       major: "Computer Science",
       social: {
@@ -74,7 +74,7 @@ export default function TeamPage() {
       name: "Ismael Otmani",
       role: "Tech Lead",
       image: "/Ismael.jpg",
-      bio: "Focused on building an inclusive tech community and organizing engaging events for all skill levels.",
+      bio: "Guiding tech strategy, mentors developers, and leads hands-on sessions to build skills in Google technologies.",
       year: "Sophomore",
       major: "Computer Science",
       social: {
@@ -87,7 +87,7 @@ export default function TeamPage() {
       name: "Solyana Sebhatu",
       role: "Treasurer",
       image: "/Solyana.jpg",
-      bio: "Focused on building an inclusive tech community and organizing engaging events for all skill levels.",
+      bio: "Managing finances, budgets, and sponsorships to support community growth. 💰",
       year: "Sophomore",
       major: "Computer Science",
       social: {
