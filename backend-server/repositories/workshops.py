@@ -44,6 +44,7 @@ def update_workshop(id: int, request: schemas.Workshops, db: Session):
 
 # A DELETE Method to delete a single workshop
 def delete(id: int, db: Session):
+    db.query(models.Registration).filter(models.Registration.workshops_id == id).delete()
     workshop = db.query(models.Workshops).filter(models.Workshops.id == id)
     if not workshop.first():
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Cannot fetch this workshop")

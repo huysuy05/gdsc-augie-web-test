@@ -17,7 +17,8 @@ import {
 import type { Workshop } from "@/lib/types"
 import { Edit, MoreHorizontal, Trash } from "lucide-react"
 import { format } from "date-fns"
-import { Badge } from "@/components/ui/badge"
+import { id } from "date-fns/locale"
+import Link from "next/link"
 
 interface WorkshopsTableProps {
   workshops: Workshop[]
@@ -41,10 +42,13 @@ export function WorkshopsTable({ workshops }: WorkshopsTableProps) {
   }
 
   const handleDelete = async (id: number) => {
-    // if (confirm("Are you sure you want to delete this workshop?")) {
-    //   await supabase.from("workshops").delete().eq("id", id)
-    //   router.refresh()
-    // }
+    const res = await fetch(`http://127.0.0.1:8000/workshops/${id}`, {
+      method: "DELETE",
+    });
+    if (res.ok) {
+      setSelectedWorkshops((prev) => prev.filter((workshopId) => workshopId !== id))
+      router.refresh()
+    }
   }
 
   return (
@@ -61,7 +65,7 @@ export function WorkshopsTable({ workshops }: WorkshopsTableProps) {
             </TableHead>
             <TableHead>Title</TableHead>
             <TableHead>Date</TableHead>
-            <TableHead>Presenter</TableHead>
+            {/* <TableHead>Presenter</TableHead> */}
             <TableHead>Attendees</TableHead>
             <TableHead className="w-24">Actions</TableHead>
           </TableRow>
@@ -84,7 +88,9 @@ export function WorkshopsTable({ workshops }: WorkshopsTableProps) {
                   />
                 </TableCell>
                 <TableCell className="font-medium">{workshop.title}</TableCell>
+                
                 <TableCell>{format(new Date(workshop.date), "MMM d, yyyy")}</TableCell>
+                <TableCell className="font-medium">{workshop.attendees?.length}</TableCell>
                 <TableCell>
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
@@ -112,6 +118,12 @@ export function WorkshopsTable({ workshops }: WorkshopsTableProps) {
           )}
         </TableBody>
       </Table>
+      <div>
+        <Link href="/create">
+        <Button >+</Button>
+        </Link>
+        
+      </div>
     </div>
   )
 }

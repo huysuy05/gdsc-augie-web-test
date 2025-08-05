@@ -66,10 +66,13 @@ export default async function Home() {
           </div>
 
           <div className="mt-10 text-center">
-            <Button variant="outline" className="group">
-              View All Workshops
-              <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-            </Button>
+            <Link href="/workshops">
+              <Button variant="outline" className="group">
+                View All Workshops
+                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+              </Button>
+            </Link>
+            
           </div>
         </div>
       </section>
