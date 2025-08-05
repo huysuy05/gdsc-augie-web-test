@@ -40,3 +40,7 @@ export async function get_all_workshops() {
         date: new Date(workshop.date),
       }));
 }
+
+// export async function get_single_regis() {
+//     const UR
+// }
