@@ -63,7 +63,6 @@ export function WorkshopsTable({ workshops }: WorkshopsTableProps) {
             <TableHead>Date</TableHead>
             <TableHead>Presenter</TableHead>
             <TableHead>Attendees</TableHead>
-            <TableHead>Tags</TableHead>
             <TableHead className="w-24">Actions</TableHead>
           </TableRow>
         </TableHeader>
@@ -86,22 +85,6 @@ export function WorkshopsTable({ workshops }: WorkshopsTableProps) {
                 </TableCell>
                 <TableCell className="font-medium">{workshop.title}</TableCell>
                 <TableCell>{format(new Date(workshop.date), "MMM d, yyyy")}</TableCell>
-                {/* <TableCell>{workshop.presenter}</TableCell>
-                <TableCell>{workshop.attendees_count}</TableCell>
-                <TableCell>
-                  <div className="flex flex-wrap gap-1">
-                    {workshop.tags.slice(0, 2).map((tag, i) => (
-                      <Badge key={i} variant="outline" className="text-xs">
-                        {tag}
-                      </Badge>
-                    ))}
-                    {workshop.tags.length > 2 && (
-                      <Badge variant="outline" className="text-xs">
-                        +{workshop.tags.length - 2}
-                      </Badge>
-                    )}
-                  </div>
-                </TableCell> */}
                 <TableCell>
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
@@ -112,7 +95,7 @@ export function WorkshopsTable({ workshops }: WorkshopsTableProps) {
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end">
                       <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                      <DropdownMenuItem onClick={() => router.push(`/dashboard/workshops/${workshop.id}`)}>
+                      <DropdownMenuItem onClick={() => router.push(`admin/workshop/edit/${workshop.id}`)}>
                         <Edit className="mr-2 h-4 w-4" />
                         Edit
                       </DropdownMenuItem>

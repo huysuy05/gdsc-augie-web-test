@@ -1,3 +1,5 @@
+import { Workshop } from "./types";
+
 export async function handleSignUp(e: any, endpoint:string)  {
     e.preventDefault();
     const full_name = e.target.name.value;
@@ -21,4 +23,20 @@ export async function handleRegister(e: any, endpoint:string, workshop_id: strin
             body: JSON.stringify({ name, email, workshop_id}),
         }) 
     return response;
+}
+export async function get_all_workshops() {
+    const URL = "http://127.0.0.1:8000/workshops";
+      
+      const data = await fetch(URL, {cache: "no-store"})
+      if (!data) {
+        console.error("Failed to fetch workshops data!");
+        return [];
+      }
+        const workshopsFromAPI: (Workshop & { date: string })[] = await data.json();
+    
+      // Convert date strings to Date objects
+      return workshopsFromAPI.map(workshop => ({
+        ...workshop,
+        date: new Date(workshop.date),
+      }));
 }

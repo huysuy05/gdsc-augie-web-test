@@ -66,12 +66,20 @@ export function Navbar() {
               Contact
             </Link>
             {!isAdmin ? (
+              <div></div>
+            ): (
+              <Link href="/admin" className="text-sm font-medium transition-colors hover:text-primary">
+              Dashboard 
+            </Link>
+            )}
+            {!isAdmin ? (
               <Link href="/login" className="text-sm font-medium transition-colors hover:text-primary">
               Admin Sign In 
             </Link>
             ): (
               <Button onClick={handleLogout}>Sign Out</Button>
             )}
+            
           </nav>
 
           <div className="flex items-center space-x-2">

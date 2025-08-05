@@ -12,7 +12,7 @@ class Workshops(Base):
     created_at = Column(DateTime, default=datetime.datetime.now)
     updated_at = Column(DateTime, default=datetime.datetime.now, onupdate=datetime.datetime.now)
     location = Column(String)
-    
+    # image = Column(String)
     attendees = relationship("Registration", back_populates="workshops")
     
 

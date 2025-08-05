@@ -2,27 +2,16 @@
 import { WorkshopCard } from "@/components/workshop-card"
 // import { WorkshopsTable } from "@/components/dashboard/workshops-table";
 import type { Workshop } from "@/lib/types"
+import { get_all_workshops } from "@/lib/functions";
 
 
 
 //This page is using Server Side Rendering, which is rendered in the server befo
 export default async function WorkshopsPage() {
-  const URL = "http://127.0.0.1:8000/workshops";
-  
-  const data = await fetch(URL, {cache: "no-store"})
-  if (!data) {
-    console.error("Failed to fetch workshops data!");
+  const workshops = await get_all_workshops();
+  if (workshops.length == 0) {
     return <div className="p-6">Failed to fetch workshops data</div>
   }
-    const workshopsFromAPI: (Workshop & { date: string })[] = await data.json();
-
-  // Convert date strings to Date objects
-  const workshops: Workshop[] = workshopsFromAPI.map(workshop => ({
-    ...workshop,
-    date: new Date(workshop.date),
-  }));
-
-  console.log(workshops);
 
 
   return (
