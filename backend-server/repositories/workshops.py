@@ -23,8 +23,8 @@ def create_post(request: schemas.Workshops, db:Session):
     new_data = models.Workshops(title=request.title, 
                                 description=request.description, 
                                 date=request.date,
-                                created_at=datetime.now(),
-                                updated_at=datetime.now(),
+                                start_time=datetime.now(),
+                                end_time=datetime.now(),
                                 location=request.location,
                                 )
     db.add(new_data)

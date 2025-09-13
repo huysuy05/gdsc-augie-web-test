@@ -14,7 +14,7 @@ import { CalendarIcon, Loader2, X } from "lucide-react"
 import { format } from "date-fns"
 import { cn } from "@/lib/utils"
 import type { Workshop } from "@/lib/types"
-import { Badge } from "@/components/ui/badge"
+
 
 interface WorkshopFormProps {
   workshop?: Workshop
@@ -30,28 +30,19 @@ export function WorkshopForm({ workshop }: WorkshopFormProps) {
     title: workshop?.title || "",
     description: workshop?.description || "",
     date: workshop?.date || "",
-    // location: workshop?.location || "",
+    location: workshop?.location || "",
     // image_url: workshop?.image_url || "/placeholder.svg?height=200&width=300",
     // tags: workshop?.tags || [],
     // resources_url: workshop?.resources_url || "",
     // recording_url: workshop?.recording_url || "",
     // presenter: workshop?.presenter || "",
-    attendees_count: workshop?.attendees || 0,
+    // attendees_count: workshop?.attendees || 0,
   })
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
     setFormData((prev) => ({ ...prev, [name]: value }))
   }
-
-  const handleNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: Number.parseInt(value) || 0 }))
-  }
-
-
-
-
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -129,17 +120,7 @@ export function WorkshopForm({ workshop }: WorkshopFormProps) {
           <Input id="recording_url" name="recording_url" value={formData.recording_url} onChange={handleChange} />
         </div> */}
 
-        <div className="space-y-2">
-          <Label htmlFor="attendees_count">Attendees Count</Label>
-          <Input
-            id="attendees_count"
-            name="attendees_count"
-            type="number"
-            value={formData.attendees_count}
-            onChange={handleNumberChange}
-          />
-        </div>
-
+        
         
       </div>
 

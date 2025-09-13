@@ -9,8 +9,9 @@ class Workshops(Base):
     title = Column(String)
     description = Column(String)
     date = Column(DateTime)
-    created_at = Column(DateTime, default=datetime.datetime.now)
-    updated_at = Column(DateTime, default=datetime.datetime.now, onupdate=datetime.datetime.now)
+    start_time = Column(DateTime)
+    end_time = Column(DateTime)
+    
     location = Column(String)
     # image = Column(String)
     attendees = relationship("Registration", back_populates="workshops")

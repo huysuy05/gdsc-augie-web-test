@@ -10,6 +10,7 @@ export default async function Admin() {
         <div>
             {/* <DashboardNav/> */}
             <WorkshopsTable workshops={all_workshops}/>
+
         </div>
         
     )

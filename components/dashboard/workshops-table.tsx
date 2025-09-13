@@ -119,7 +119,7 @@ export function WorkshopsTable({ workshops }: WorkshopsTableProps) {
         </TableBody>
       </Table>
       <div>
-        <Link href="/create">
+        <Link href="/admin/workshop/create">
         <Button >+</Button>
         </Link>
         

@@ -14,6 +14,8 @@ class WorkShopsBase(BaseModel):
 class Workshops(WorkShopsBase):
     description: str
     date: datetime
+    start_time: str
+    end_time: str
     location: str
     class Config():
         from_attributes = True
@@ -29,8 +31,8 @@ class RegisStudentOut(BaseModel):
 
 class ShowWorkShops(Workshops):
     id: int
-    created_at: datetime
-    updated_at: datetime
+    start_time:datetime
+    end_time:datetime
     attendees: List[RegisStudentOut] = []
     class Config:
         from_attributes = True
