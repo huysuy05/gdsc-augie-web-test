@@ -25,7 +25,7 @@ export default async function WorkshopsPage() {
               date={workshop.date}
               start_time={workshop.start_time}
               end_time={workshop.end_time}
-              image="Not available"
+              image_url=""
               description={workshop.description}
               attendees={workshop.attendees && workshop.attendees.length >= 0 ? workshop.attendees.length : 1}
               location={workshop.location}

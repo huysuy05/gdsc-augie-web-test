@@ -13,7 +13,7 @@ class Workshops(Base):
     end_time = Column(DateTime)
     
     location = Column(String)
-    # image = Column(String)
+    image_url = Column(String)
     attendees = relationship("Registration", back_populates="workshops")
     
 

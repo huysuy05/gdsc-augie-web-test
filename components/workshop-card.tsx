@@ -15,13 +15,13 @@ export interface WorkshopCardProps {
   date: Date
   start_time: Date
   end_time: Date
-  image: string
+  image_url: string
   description: string
   attendees?: number
   location: string
 } 
 
-export function WorkshopCard({ title, date, start_time, end_time, image, description,attendees, id, location }: WorkshopCardProps)  {
+export function WorkshopCard({ title, date, start_time, end_time, image_url, description,attendees, id, location }: WorkshopCardProps)  {
   const [isHovered, setIsHovered] = useState(false);
   const {isAdmin} = useAuth();
 
@@ -33,7 +33,7 @@ export function WorkshopCard({ title, date, start_time, end_time, image, descrip
     >
       <div className="relative h-48 w-full overflow-hidden rounded-t-lg">
         <Image
-          src={image || "/everyone.jpg"}
+          src={image_url || "/gdg-logo.png"}
           alt={title}
           fill
           className={`object-cover transition-transform duration-500 ${isHovered ? "scale-110" : "scale-100"}`}

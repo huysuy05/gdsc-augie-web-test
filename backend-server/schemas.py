@@ -17,6 +17,7 @@ class Workshops(WorkShopsBase):
     start_time: str
     end_time: str
     location: str
+    image_url:str
     class Config():
         from_attributes = True
         

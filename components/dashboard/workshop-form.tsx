@@ -23,7 +23,9 @@ interface WorkshopFormProps {
 export function WorkshopForm({ workshop }: WorkshopFormProps) {
   const router = useRouter()
   const [loading, setLoading] = useState(false)
+  const cloudinary_cloud_name = process.env.NEXT_PUBLIC_CLOUDINARY_NAME ?? "";
   const [date, setDate] = useState<Date | undefined>(workshop ? new Date(workshop.date) : undefined)
+
   // const [tag, setTag] = useState("")
 
   const [formData, setFormData] = useState({
@@ -31,18 +33,37 @@ export function WorkshopForm({ workshop }: WorkshopFormProps) {
     description: workshop?.description || "",
     date: workshop?.date || "",
     location: workshop?.location || "",
-    // image_url: workshop?.image_url || "/placeholder.svg?height=200&width=300",
-    // tags: workshop?.tags || [],
-    // resources_url: workshop?.resources_url || "",
-    // recording_url: workshop?.recording_url || "",
-    // presenter: workshop?.presenter || "",
-    // attendees_count: workshop?.attendees || 0,
+    start_time: workshop?.start_time,
+    image_url:workshop?.image_url || "",
+    end_time: workshop?.start_time || ""
   })
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
     setFormData((prev) => ({ ...prev, [name]: value }))
+    console.log(formData.image_url);
   }
+
+  const handleImageUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0]
+    setLoading(true);
+    if (!file) return
+    const data = new FormData();
+    data.append("file", file)
+    data.append("upload_preset", "gdg-photos")
+    data.append("cloud_name", cloudinary_cloud_name)
+
+    const res = await fetch(`https://api.cloudinary.com/v1_1/${cloudinary_cloud_name}/image/upload`, {
+      method:"POST",
+      body: data
+    })
+
+    const uploadedImageURL = await res.json()
+    setFormData((prev) => ({...prev, image_url: uploadedImageURL.url}))
+    console.log(uploadedImageURL.url)
+    setLoading(false)
+  }
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -88,37 +109,29 @@ export function WorkshopForm({ workshop }: WorkshopFormProps) {
           </Popover>
         </div>
 
-        {/* <div className="space-y-2">
+        <div className="space-y-2">
           <Label htmlFor="time">Time</Label>
           <Input
+            type="time"
             id="time"
             name="time"
-            value={formData.time}
+            value={formData.start_time?.toISOString().substring(11,16)}
             onChange={handleChange}
             placeholder="e.g. 4:00 PM - 6:00 PM"
             required
           />
-        </div> */}
+        </div>
 
-        {/* <div className="space-y-2">
+        <div className="space-y-2">
           <Label htmlFor="location">Location</Label>
           <Input id="location" name="location" value={formData.location} onChange={handleChange} required />
-        </div> */}
+        </div>
 
-        {/* <div className="space-y-2">
+        <div className="space-y-2">
           <Label htmlFor="image_url">Image URL</Label>
-          <Input id="image_url" name="image_url" value={formData.image_url} onChange={handleChange} />
+          <Input type="file" id="image_url" name="image_url" onChange={handleImageUpload} accept="image/*" />
+          {loading ? "Uploading....." : formData.image_url ? <img src={formData.image_url} alt="" width="200px" height="200px"/> : null}
         </div>
-
-        <div className="space-y-2">
-          <Label htmlFor="resources_url">Resources URL</Label>
-          <Input id="resources_url" name="resources_url" value={formData.resources_url} onChange={handleChange} />
-        </div>
-
-        <div className="space-y-2">
-          <Label htmlFor="recording_url">Recording URL</Label>
-          <Input id="recording_url" name="recording_url" value={formData.recording_url} onChange={handleChange} />
-        </div> */}
 
         
         

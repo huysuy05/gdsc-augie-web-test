@@ -26,6 +26,7 @@ def create_post(request: schemas.Workshops, db:Session):
                                 start_time=datetime.now(),
                                 end_time=datetime.now(),
                                 location=request.location,
+                                image_url=request.image_url
                                 )
     db.add(new_data)
     db.commit()

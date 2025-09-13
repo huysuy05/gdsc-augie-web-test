@@ -14,6 +14,7 @@ export interface Workshop {
   image: string
   description: string
   location: string
+  image_url: string
   start_time: Date
   end_time: Date
   attendees?: Array<string> 
