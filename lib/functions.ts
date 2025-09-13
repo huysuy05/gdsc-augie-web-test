@@ -38,6 +38,8 @@ export async function get_all_workshops() {
       return workshopsFromAPI.map(workshop => ({
         ...workshop,
         date: new Date(workshop.date),
+        start_time: new Date(workshop.start_time),
+        end_time: new Date(workshop.end_time),
       }));
 }
 

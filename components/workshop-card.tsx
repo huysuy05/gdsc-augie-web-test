@@ -7,19 +7,21 @@ import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { useAuth } from "@/contexts/AuthContext"
 import Link from "next/link"
-import type { Workshop } from "@/lib/types"
+
 
 export interface WorkshopCardProps {
   id: number
   title: string
   date: Date
+  start_time: Date
+  end_time: Date
   image: string
   description: string
   attendees?: number
   location: string
 } 
 
-export function WorkshopCard({ title, date, image, description,attendees, id, location }: WorkshopCardProps)  {
+export function WorkshopCard({ title, date, start_time, end_time, image, description,attendees, id, location }: WorkshopCardProps)  {
   const [isHovered, setIsHovered] = useState(false);
   const {isAdmin} = useAuth();
 
@@ -40,7 +42,8 @@ export function WorkshopCard({ title, date, image, description,attendees, id, lo
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent rounded-t-lg"></div>
         <div className="absolute bottom-3 left-3 flex items-center text-white text-sm">
           <Calendar className="h-4 w-4 mr-1" />
-          {date.toLocaleDateString()}
+          <p>{date.toLocaleDateString()} at {start_time.toLocaleTimeString([],{hour:'2-digit', minute:'2-digit'})} </p>
+              
         </div>
       </div>
 

@@ -65,7 +65,7 @@ export function WorkshopsTable({ workshops }: WorkshopsTableProps) {
             </TableHead>
             <TableHead>Title</TableHead>
             <TableHead>Date</TableHead>
-            {/* <TableHead>Presenter</TableHead> */}
+            <TableHead>Time</TableHead>
             <TableHead>Attendees</TableHead>
             <TableHead className="w-24">Actions</TableHead>
           </TableRow>
@@ -89,7 +89,8 @@ export function WorkshopsTable({ workshops }: WorkshopsTableProps) {
                 </TableCell>
                 <TableCell className="font-medium">{workshop.title}</TableCell>
                 
-                <TableCell>{format(new Date(workshop.date), "MMM d, yyyy")}</TableCell>
+                <TableCell>{format(workshop.date, "MMM d, yyyy")}</TableCell>
+                <TableCell>{workshop.start_time.toLocaleTimeString([],{hour:'2-digit', minute:'2-digit'})}</TableCell>
                 <TableCell className="font-medium">{workshop.attendees?.length}</TableCell>
                 <TableCell>
                   <DropdownMenu>
