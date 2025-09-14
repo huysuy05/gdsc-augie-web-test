@@ -1,7 +1,7 @@
 "use client"
 
 import type React from "react"
-
+import { handleCreateWorkshop } from "@/lib/functions"
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
@@ -13,29 +13,32 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { CalendarIcon, Loader2, X } from "lucide-react"
 import { format } from "date-fns"
 import { cn } from "@/lib/utils"
-import type { Workshop } from "@/lib/types"
+import type { CreateWorkshop } from "@/lib/types"
 
 
 interface WorkshopFormProps {
-  workshop?: Workshop
+  workshop?: CreateWorkshop
 }
 
 export function WorkshopForm({ workshop }: WorkshopFormProps) {
   const router = useRouter()
   const [loading, setLoading] = useState(false)
+  const [imageloading, setimageLoading] = useState(false)
   const cloudinary_cloud_name = process.env.NEXT_PUBLIC_CLOUDINARY_NAME ?? "";
-  const [date, setDate] = useState<Date | undefined>(workshop ? new Date(workshop.date) : undefined)
+  const [date, setDate] = useState<Date | undefined>(
+  workshop?.date ? new Date(workshop.date) : undefined
+);
 
   // const [tag, setTag] = useState("")
 
   const [formData, setFormData] = useState({
     title: workshop?.title || "",
     description: workshop?.description || "",
-    date: workshop?.date || "",
+    date: workshop?.date,
     location: workshop?.location || "",
-    start_time: workshop?.start_time,
+    start_time: workshop?.start_time ? format(workshop.start_time, "HH:mm") : "",
     image_url:workshop?.image_url || "",
-    end_time: workshop?.start_time || ""
+    end_time: workshop?.end_time ? format(workshop.end_time, "HH:mm") : ""
   })
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -47,7 +50,8 @@ export function WorkshopForm({ workshop }: WorkshopFormProps) {
   const handleImageUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0]
     setLoading(true);
-    if (!file) return
+    setimageLoading(true)
+    if (!file) return;
     const data = new FormData();
     data.append("file", file)
     data.append("upload_preset", "gdg-photos")
@@ -62,6 +66,7 @@ export function WorkshopForm({ workshop }: WorkshopFormProps) {
     setFormData((prev) => ({...prev, image_url: uploadedImageURL.url}))
     console.log(uploadedImageURL.url)
     setLoading(false)
+    setimageLoading(false)
   }
 
 
@@ -72,8 +77,51 @@ export function WorkshopForm({ workshop }: WorkshopFormProps) {
       alert("Please select a date")
       return
     }
-
     setLoading(true)
+    
+    // Combine date with start_time and end_time to create proper Date objects
+    const startDateTime = new Date(date)
+    const [startHours, startMinutes] = formData.start_time.split(':').map(Number)
+    startDateTime.setHours(startHours, startMinutes, 0, 0)
+
+    const endDateTime = new Date(date)
+    const [endHours, endMinutes] = formData.end_time.split(':').map(Number)
+    endDateTime.setHours(endHours, endMinutes, 0, 0)
+
+    const workshopData = {
+      title: formData.title,
+      description: formData.description,
+      location: formData.location,
+      image_url: formData.image_url,
+      date: date.toISOString(),
+      start_time: startDateTime.toISOString(),
+      end_time: endDateTime.toISOString()
+    }
+    
+    const res = await handleCreateWorkshop(workshopData as CreateWorkshop);
+    if (!res.ok) {
+      alert("Cannot create new workshop")
+      setLoading(false)
+      console.log(workshopData)
+      return
+    }
+
+    alert("Create workshop successfully!!!")
+    setLoading(false)
+    
+    
+    setFormData({
+    title: workshop?.title || "",
+    description: workshop?.description || "",
+    date: workshop?.date,
+    location: workshop?.location || "",
+    start_time: workshop?.start_time ? format(workshop.start_time, "HH:mm") : "",
+    image_url:workshop?.image_url || "",
+    end_time: workshop?.end_time ? format(workshop.end_time, "HH:mm") : ""
+  })
+  router.push("/")
+
+    
   }
 
     
@@ -110,14 +158,25 @@ export function WorkshopForm({ workshop }: WorkshopFormProps) {
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="time">Time</Label>
+          <Label htmlFor="start_time">Start Time</Label>
           <Input
             type="time"
-            id="time"
-            name="time"
-            value={formData.start_time?.toISOString().substring(11,16)}
+            id="start_time"
+            name="start_time"
+            value={formData.start_time}
             onChange={handleChange}
-            placeholder="e.g. 4:00 PM - 6:00 PM"
+            required
+          />
+        </div>
+
+        <div className="space-y-2">
+          <Label htmlFor="end_time">End Time</Label>
+          <Input
+            type="time"
+            id="end_time"
+            name="end_time"
+            value={formData.end_time}
+            onChange={handleChange}
             required
           />
         </div>
@@ -130,7 +189,7 @@ export function WorkshopForm({ workshop }: WorkshopFormProps) {
         <div className="space-y-2">
           <Label htmlFor="image_url">Image URL</Label>
           <Input type="file" id="image_url" name="image_url" onChange={handleImageUpload} accept="image/*" />
-          {loading ? "Uploading....." : formData.image_url ? <img src={formData.image_url} alt="" width="200px" height="200px"/> : null}
+          {imageloading ? "Uploading....." : formData.image_url ? <img src={formData.image_url} alt="" width="200px" height="200px"/> : null}
         </div>
 
         

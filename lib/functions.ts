@@ -1,4 +1,4 @@
-import { Workshop } from "./types";
+import { CreateWorkshop, Workshop } from "./types";
 
 export async function handleSignUp(e: any, endpoint:string)  {
     e.preventDefault();
@@ -43,6 +43,17 @@ export async function get_all_workshops() {
       }));
 }
 
+
+export async function handleCreateWorkshop(formData: CreateWorkshop) {
+  const res = await fetch("/api/create", {
+    method:"POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(formData)
+  })
+
+  return res
+
+}
 // export async function get_single_regis() {
 //     const UR
 // }

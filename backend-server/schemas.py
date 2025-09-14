@@ -14,8 +14,8 @@ class WorkShopsBase(BaseModel):
 class Workshops(WorkShopsBase):
     description: str
     date: datetime
-    start_time: str
-    end_time: str
+    start_time: datetime
+    end_time: datetime
     location: str
     image_url:str
     class Config():

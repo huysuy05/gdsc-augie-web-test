@@ -11,13 +11,21 @@ export interface Workshop {
   id: number
   title: string   
   date: Date    
-  image: string
   description: string
   location: string
   image_url: string
   start_time: Date
   end_time: Date
   attendees?: Array<string> 
+}
+export interface CreateWorkshop {
+  title: string   
+  date?: Date | string
+  description: string
+  location: string
+  image_url: string
+  start_time?: Date | string
+  end_time?: Date | string
 }
 
 export interface Event {
