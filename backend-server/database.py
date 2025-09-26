@@ -19,14 +19,17 @@ if not SQLALCHEMY_DATABASE_URL:
 
 
 ###### THIS CREATES/CONNECTS A DATABASE ENGINE ######
+### A bridge between Python and the DB, translates the Python code to SQL
 ### connect_args{...} allows multiple threads to open a connection with the db
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
 
 # Creates a Factory for db session objects using SQLAlchemy.
+## Initiate a session to use the db (allows interaction)
 SessionLocal = sessionmaker(bind=engine, autoflush=False, autocommit=False)
 
 Base = declarative_base()
 
+## Open the session when a new request is made
 def get_db():
     db = SessionLocal()
     try:
