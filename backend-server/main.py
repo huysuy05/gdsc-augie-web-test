@@ -1,7 +1,6 @@
-from fastapi import FastAPI, Request
-import uvicorn
+from fastapi import FastAPI
+
 # Libs for receiving emails
-import os
 # from utils import emails
 from dotenv import load_dotenv
 import models
@@ -13,6 +12,7 @@ load_dotenv()
 
 app = FastAPI()
 
+# Checks the tables if they match what is defined in the engine, if there is a missing table, it will create it.
 models.Base.metadata.create_all(bind=engine)
 
 app.include_router(workshops.router)
